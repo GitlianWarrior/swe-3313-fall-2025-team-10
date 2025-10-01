@@ -1,5 +1,5 @@
 # Jackson Hainey
-thainey1@students.kennesaw.edu | Github Profile
+thainey1@students.kennesaw.edu | https://github.com/GitlianWarrior
 
 ## Summary
 Motivated software engineering student interested in web development. Theoretical knowledge of SDLC phases from college lectures. Preparing to contribute to a team project building a web application using Java, Spring, and SQLite.
