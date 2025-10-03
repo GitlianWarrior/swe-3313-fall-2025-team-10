@@ -5,7 +5,7 @@ thainey1@students.kennesaw.edu | https://github.com/GitlianWarrior
 Motivated software engineering student interested in web development. Theoretical knowledge of SDLC phases from college lectures. Preparing to contribute to a team project building a web application using Java, Spring, and SQLite.
 
 ## Skills
-* Programming Languages: Java and C# (from coursework)
+* Programming Languages: Java and C#
 * Frameworks and Tools: IntelliJ, Visual Studio, and Gantt Project
 * Operating Systems: MacOS, Windows, Linux
 * Software Development Life Cycle  (SDLC): Theoretical knowledge from lectures in Project Planning, Requirements Gathering, Design, Implementation, Testing & Deployment.
