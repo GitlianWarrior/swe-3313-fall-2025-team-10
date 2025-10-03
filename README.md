@@ -9,7 +9,7 @@ We will create a small e-commerce website using Java 23, the Spring Framework, a
 
 * [Andres Ferrer Arguvita](./project-plan/resumes/Andres-Ferrer-Arguvita.md)
 * [Caven Davidel](./project-plan/resumes/Caven-Davidel.md)
-* [Jackson Hainey](./project-plan/resumes/Jackson-Hainey.md)
+* [Jackson Hainey](project-plan/resumes/Jackson-Hainey-Resume.md)
 * [Arlene Huerta](./project-plan/resumes/Arlene-Huerta.md)
 * [Tuan Vo](./project-plan/resumes/Tuan-Vo.md)
 
