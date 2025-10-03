@@ -4,7 +4,6 @@ Welcome to the project repository for Team 10. Here you will find all the artifa
 
 We will create a small e-commerce website using Java 23, the Spring Framework, and a SQLite database to sell unique, one-of-a-kind items.
 
----
 
 ## Meet Our Team
 
@@ -14,7 +13,6 @@ We will create a small e-commerce website using Java 23, the Spring Framework, a
 * [Arlene Huerta](./project-plan/resumes/Arlene-Huerta-resume.md)
 * [Tuan Vo](./project-plan/resumes/Tuan-Vo-resume.md)
 
----
 
 ## Project Deliverables
 
