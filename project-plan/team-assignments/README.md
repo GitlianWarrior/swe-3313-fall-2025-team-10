@@ -24,7 +24,7 @@
   - Focuses on usability, accessibility, and alignment with the project's architectural requirements.
   - Collaborates on testing user flows to enhance customer and administrator interactions.
 
-## Technical Lead: [Enter Name]
+## Technical Lead: [Caven]
 
 - Responsibilities:
   - Oversees technical architecture, including decisions on Java 23, Spring Framework, Maven, and SQLite integration.
