@@ -16,7 +16,7 @@
   - Tracks project velocity and ensures adherence to timelines using tools like the Gantt chart.
   - Supports collaboration among team members to maintain a smooth workflow throughout the semester.
 
-## UI/UX Specialist: [Enter Name]
+## UI/UX Specialist: [Tuan Vo](./resumes/Tuan-Vo-Resume.md)
 
 - Responsibilities:
   - Leads the user interface design using tools like Marvel, ensuring an intuitive and visually appealing experience for browsing and purchasing rare cars.
@@ -24,7 +24,7 @@
   - Focuses on usability, accessibility, and alignment with the project's architectural requirements.
   - Collaborates on testing user flows to enhance customer and administrator interactions.
 
-## Technical Lead: [Caven]
+## Technical Lead: [Caven Davidek](./resumes/Caven-Davidek-Resume.md)
 
 - Responsibilities:
   - Oversees technical architecture, including decisions on Java 23, Spring Framework, Maven, and SQLite integration.
@@ -32,7 +32,7 @@
   - Troubleshoots technical issues and ensures the system meets performance and security needs.
   - Coordinates the development phase to integrate UI designs with backend logic.
 
-## Content/Documentation Specialist: [Enter Name]
+## Content/Documentation Specialist: [Arlene Huerta](./resumes/Arlene-Huerta-Resume.md)
 
 - Responsibilities:
   - Manages all project documentation, including requirements, technical design, and peer evaluation prep.
