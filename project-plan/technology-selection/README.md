@@ -4,9 +4,14 @@
 
 - **Why Selected**: All team members have prior experience with Java. This ensures efficient development and a reduced learning curve.
 
-## Framework: Spring with Maven
+## Frameworks 
 
-- **Why Selected**: Spring with Maven is required for Java for this project.
+- **Back-End: Spring Boot with Maven**    
+  - **Why Selected**: Spring Boot is a required web framework that simplifies the development of Java-based web applications. It provides the core architecture for handling user requests, managing application logic, and connecting to our data source. We will use Maven for dependency management as it is the industry standard for Java projects. 
+
+- **Front-End: [Enter Here]**
+  - **Why Selected**: [Enter Info Here]
+
 
 ## Storage Plan: SQLite
 
@@ -16,11 +21,8 @@
 
 ## Operating Environment
 
-1. #### Target Platforms (Runtime Environment)
-
-   - Windows
-   - macOS
-   - Linux
+1. #### Target Enviornment (Runtinme)
+- The application will be a web application accessible through modern web browsers such as Chrome, Firefox, and Safari on any operating system.
 
 2. #### Development Environment
 
