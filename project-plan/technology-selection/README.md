@@ -6,11 +6,10 @@
 
 ## Frameworks 
 
-- **Back-End: Spring Boot with Maven**    
-  - **Why Selected**: Spring Boot is a required web framework that simplifies the development of Java-based web applications. It provides the core architecture for handling user requests, managing application logic, and connecting to our data source. We will use Maven for dependency management as it is the industry standard for Java projects. 
-
-- **Front-End: [Enter Here]**
-  - **Why Selected**: [Enter Info Here]
+- **Back-End - Spring (using Spring Boot with Maven)**
+  - **Why Selected**: Required for Java based projects by the project guidelines.
+- **Front-End: Bootstrap**
+  - **Why Selected**: Bootstrap was chosen for its extensive library of pre-built, responsive components and integration with Spring Boot, making it suitable for creating a professional interface without excessive custom CSS.
 
 
 ## Storage Plan: SQLite
@@ -21,7 +20,8 @@
 
 ## Operating Environment
 
-1. #### Target Enviornment (Runtinme)
+1. #### Target Enviornment (Runtime)
+
 - The application will be a web application accessible through modern web browsers such as Chrome, Firefox, and Safari on any operating system.
 
 2. #### Development Environment
