@@ -6,7 +6,7 @@
 
 ## Frameworks 
 
-- **Back-End - Spring (using Spring Boot with Maven)**
+- **Back-End: Spring (using Spring Boot with Maven)**
   - **Why Selected**: Required for Java based projects by the project guidelines.
 - **Front-End: Bootstrap**
   - **Why Selected**: Bootstrap was chosen for its extensive library of pre-built, responsive components and integration with Spring Boot, making it suitable for creating a professional interface without excessive custom CSS.
