@@ -4,7 +4,7 @@ tvo26@students.kennesaw.edu | http:github.com/kirtizgo
 ## Summary
 Computer Science student with Java programming experience and coursework in data structures, algorithms, and software engineering. Interested in backend development, databases, and artificial intelligence. Ready to contribute to team projects by applying skills in object-oriented programming, problem solving, and project planning.
 
-## Skill
+## Skills
 Programming Languages: Java, Python, SQL, C#
 Frameworks and Tools: IntelliJ IDEA, Visual Studio Code, Git/GitHub, SQL Server Management Studio
 Operating Systems: Windows, MacOS, Linux
