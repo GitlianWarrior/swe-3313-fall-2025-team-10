@@ -7,7 +7,7 @@ We will create a small e-commerce website using Java 23, the Spring Framework, a
 
 ## Meet Our Team
 
-* [Andres Ferrer Arguvita](./project-plan/resumes/Andres-Ferrer-Resume.md)
+* [Andres Ferrer](./project-plan/resumes/Andres-Ferrer-Resume.md)
 * [Caven Davidel](./project-plan/resumes/Caven-Davidek-Resume.md)
 * [Jackson Hainey](./project-plan/resumes/Jackson-Hainey-Resume.md)
 * [Arlene Huerta](./project-plan/resumes/Arlene-Huerta-Resume.md)
