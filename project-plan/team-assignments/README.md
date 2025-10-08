@@ -17,16 +17,16 @@
 ## Frontend Lead: [Tuan Vo](./resumes/Tuan-Vo-Resume.md)
 
 - Responsibilities:
-  - Monitors progress against the Gantt chart and reports status updates.
-  - Resolves phase-specific obstacles to keep the project on schedule.
-  - Contributes to Front-End and Back-End development.
+  - Designs UI using Marvel, creating mockups for screens like inventory and cart.
+  - Leads frontend coding to transform designs into functional software.
+  - Ensures UI/UX is intuitive, accessible, and meets architectural standards.
  
 ## Backend Lead: [Caven Davidek](./resumes/Caven-Davidek-Resume.md)
 
 - Responsibilities:
-  - Monitors progress against the Gantt chart and reports status updates.
-  - Resolves phase-specific obstacles to keep the project on schedule.
-  - Contributes to Front-End and Back-End development.
+  - Promotes coding standards and resolves complex technical issues.
+  - Leads backend coding for features like data tables and APIs.
+  - Ensures performance and security standards are met.
 
 ## Product Lead: [Arlene Huerta](./resumes/Arlene-Huerta-Resume.md)
 
