@@ -1,8 +1,5 @@
 # Requirements for Rare Car E-Commerce Website
 
-## Introduction
-This document details the functional and non-functional requirements for an  e-commerce website specializing in rare cars. The website will allow  users to browse, search, and purchase unique vehicles, with  administrative features for inventory and sales management. Requirements are organized by Version, Epic, and Story, with associated priority,  estimated effort, and functional/non-functional classifications.
-
 ## Version 1
 ### Epic: Manage User Authentication (T10E-1)
 
