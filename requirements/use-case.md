@@ -1,1 +1,1 @@
-![](use-case)
+![](use-case.png)
