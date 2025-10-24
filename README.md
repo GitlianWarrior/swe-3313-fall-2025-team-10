@@ -32,5 +32,5 @@ A more thorough overview of the client's requested requirements/features is avai
 
 * **Use Case Diagram:** [View our detailed Use Case Diagram.](./requirements/use-case.md)
 * **Decision Table:** [Review our comprehensive Decision Table.](./requirements/decision-table.md)
-* **Video Presentation:** [Watch our Requirements presentation on Loom.](#)
+* **Video Presentation:** [Watch our Requirements presentation on Loom.](https://www.loom.com/share/74f07bda2e1e4574800314431763a108?sid=9b1d5bfb-2e65-42f5-8159-456cfe551604)
 
