@@ -34,3 +34,13 @@ A more thorough overview of the client's requested requirements/features is avai
 * **Decision Table:** [Review our comprehensive Decision Table.](./requirements/decision-table.md)
 * **Video Presentation:** [Watch our Requirements presentation on Loom.](https://www.loom.com/share/74f07bda2e1e4574800314431763a108?sid=9b1d5bfb-2e65-42f5-8159-456cfe551604)
 
+
+## User Interface Design
+
+
+In this section, our team composed a high-fidelity interactive user interface mockup for the e-commerce website using Marvel. The UI design and high fidelity mockup includes every must-have screen the client requires. This includes a login, self-registration, inventory list, shopping cart, checkout, and a sales report screen. 
+
+* **Marvel Prototype:** [View our High Fidelity User Interface Design (Marvel).]()
+* **Video Presentation:** [Watch our User Interface Design presentation on Loom.]()
+
+
