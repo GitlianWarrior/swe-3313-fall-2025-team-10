@@ -40,7 +40,7 @@ A more thorough overview of the client's requested requirements/features is avai
 
 In this section, our team composed a high-fidelity interactive user interface mockup for the e-commerce website using Marvel. The UI design and high fidelity mockup includes every must-have screen the client requires. This includes a login, self-registration, inventory list, shopping cart, checkout, and a sales report screen. 
 
-* **Marvel Prototype:** [View our High Fidelity User Interface Design (Marvel).]()
+* **Marvel Prototype:** [View our High Fidelity User Interface Design (Marvel).](https://marvelapp.com/prototype/1caggbd9)
 * **Video Presentation:** [Watch our User Interface Design presentation on Loom.]()
 
 
