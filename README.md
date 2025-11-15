@@ -44,3 +44,7 @@ In this section, our team composed a high-fidelity interactive user interface mo
 * **Video Presentation:** [Watch our User Interface Design presentation on Loom.](https://www.loom.com/share/498b5c9810a84e5c845f075cb050da85)
 
 
+## Technical Design
+
+This section provides a detailed overview of the technical design for our web-based e-commerce application, including implementation languages, frameworks, data storage, entity relationships, and coding standards. It serves as a blueprint for us to build and maintain the system efficiently.
+* [Technical Design.](./technical-design/README.md)
