@@ -33,3 +33,20 @@
 - **Thymeleaf**: Template engine for Spring-integrated server-side HTML rendering, enabling dynamic content while keeping the frontend simple.
   - [Thymeleaf Documentation](https://www.thymeleaf.org/documentation.html)
   - [Thymeleaf with Spring Tutorial](https://www.baeldung.com/spring-thymeleaf-3)
+ 
+## C. Data Storage Plan
+
+- **Database**: SQLite as the embedded SQL database for persistent storage; data survives application restarts. No external server is required.
+  - [SQLite Documentation](https://www.sqlite.org/index.html)
+- **Libraries and Technologies**:
+  - ORM/Persistence: Spring Data JPA for mapping Java objects to database tables and handling CRUD operations.
+  - Annotations: JPA standards like @Entity, @Id, @GeneratedValue for entity definitions.
+  - Driver: sqlite-jdbc for JDBC connectivity to SQLite.
+  - [Spring Data JPA Documentation](https://docs.spring.io/spring-data/jpa/reference/)
+- **Implementation Steps**:
+  - Configure the database in Spring Boot's application.properties (e.g., spring.datasource.url=jdbc:sqlite:database.db).
+  - Define JPA entity classes to represent tables.
+  - Create repository interfaces extending JpaRepository for automatic CRUD methods.
+  - Use service classes with @Transactional for business logic and data commits.
+  - On startup, use a CommandLineRunner or data.sql script to check/create the DB and seed initial data if needed.
+- **Persistence Assurance**: All changes are committed transactionally via JPA, ensuring data durability beyond runtime memory; no fresh start on each launch.
