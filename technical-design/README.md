@@ -18,6 +18,7 @@
   - [Official Java Documentation](https://docs.oracle.com/en/java/javase/23/)
   - [Java Tutorial for Beginners](https://docs.oracle.com/javase/tutorial/)
 - **HTML/CSS/JavaScript**: Standard for frontend rendering and interactivity, enabling responsive UIs matching our Marvel mockups.
+  
   - [MDN Web Docs for HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
   - [MDN Web Docs for CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
   - [MDN Web Docs for JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
@@ -28,6 +29,7 @@
   - [Spring Boot Documentation](https://docs.spring.io/spring-boot/reference/)
   - [Spring Boot Tutorial](https://spring.io/guides/gs/spring-boot/)
 - **Bootstrap**: CSS framework for responsive design and pre-built components to accelerate UI development.
+  
   - [Bootstrap Documentation](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
   - [Bootstrap Tutorial](https://www.w3schools.com/bootstrap5/)
 - **Thymeleaf**: Template engine for Spring-integrated server-side HTML rendering, enabling dynamic content while keeping the frontend simple.
@@ -44,6 +46,7 @@
   - Driver: sqlite-jdbc for JDBC connectivity to SQLite.
   - [Spring Data JPA Documentation](https://docs.spring.io/spring-data/jpa/reference/)
 - **Implementation Steps**:
+  
   - Configure the database in Spring Boot's application.properties (e.g., spring.datasource.url=jdbc:sqlite:database.db).
   - Define JPA entity classes to represent tables.
   - Create repository interfaces extending JpaRepository for automatic CRUD methods.
