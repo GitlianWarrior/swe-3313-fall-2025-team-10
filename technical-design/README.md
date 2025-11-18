@@ -57,14 +57,22 @@
 
 ## I. Coding Style Guide
 
-- **Google Java Style Guide**: Selected style guide for our backend Java development. It provides specific rules for commenting, naming, and filename conventions to ensure all team members follow a uniform and readable style of code throughout the application.
-  - [Google Java Guide](https://google.github.io/styleguide/javaguide.html)
-- **Style Instructions**: Specific guidelines adhering to the Google Java Style Guide in which our team will follow during implementation.
+- **[Java Style Guide](https://google.github.io/styleguide/javaguide.html)**: The Google Java Guide will be used for our backend Java development. It provides specific rules for commenting, naming, and filename conventions to ensure all team members follow a uniform and readable style of code throughout the application.
+  
   - Naming Conventions: UpperCamelCase for classes; camelCase for variables and methods.
   - Filename Conventions: File names must match class names and use .java extensions.
   - Line Length: Break lines that exceed 100 characters.
-  - Indentation: Use 2 space when indenting (no tabs).
-- **Source Control Stategy**: Our team follows a [GitFlow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) style approach to maintain an organized codebase. Each feature has its own branch and pull request which helps us review code before merging.
+  - Indentation: Use 2 spaces when indenting (no tabs).
+- **[HTML/CSS/Javascript Style Guide](https://developer.mozilla.org/en-US/curriculum/)**: Frontend code is constructed with semantic HTML, an organized external CSS, and focused JavaScript for form behavior. Specific guidelines are followed to maintain a clean, frontend style.
+  
+  - HTML Structure: Utilize semantic HTML tags `<main>`,`<nav>`,`<section>` for steady page layouts.
+  - CSS Structure: Must use descriptive class names (ex: `.user-info`).
+  - JavaScript Structure: Write minimal scripts, purely focusing on interactive elements that improve a user's experience.
+- **[SQLite Style Guide](https://www.sqlite.org/lang.html)**: SQLite serves as the embedded database for our application, storing data locally and persistently. Our team adheres to defined guidelines to keep database usage simple to maintain.
+
+  - Naming Conventions: Use snake_case for column and table names (ex: order_id).
+  - Query Formatting: For clean readability, break long SQLite statements across multiple lines.
+- **Source Control Strategy**: Our team follows a [GitFlow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) style approach to maintain an organized codebase. Each feature has its own branch and pull request which helps us review code before merging.
 
   
 
