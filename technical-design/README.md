@@ -11,6 +11,7 @@
 - G. Database Seed Data
 - H. Authentication and Authorization Plan
 - I. Coding Style Guide
+- J. Video Presentation
 
 ## A. Implementation Language(s)
 
@@ -85,7 +86,12 @@
   - Query Formatting: For clean readability, break long SQLite statements across multiple lines.
 - **Source Control Strategy**: Our team follows a [GitFlow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) style approach to maintain an organized codebase. Each feature has its own branch and pull request which helps us review code before merging.
 
-  
+## J. Video Presentation
+
+- **Video Presentation**: [Watch our Technical Design Presentation on Loom.]()
+
+
+
 
 
   
