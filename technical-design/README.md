@@ -53,5 +53,11 @@
 
 ## H. Authentication and Authorization Plan
 
-- **Technical Approach**: 
+- **Technical Approach**:
+
+## I. Coding Style Guide
+
+- **Google Java Style**:
+
+
   
