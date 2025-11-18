@@ -1,6 +1,6 @@
 # Technology Selection
 
-## Language: Java 23
+## Language: Java 24
 
 - **Why Selected**: All team members have prior experience with Java. This ensures efficient development and a reduced learning curve.
 
