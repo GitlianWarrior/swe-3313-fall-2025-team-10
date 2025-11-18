@@ -57,7 +57,16 @@
 
 ## I. Coding Style Guide
 
-- **Google Java Style**:
+- **Google Java Style Guide**: Selected style guide for our backend Java development. It provides specific rules for commenting, naming, and filename conventions to ensure all team members follow a uniform and readable style of code throughout the application.
+  - [Google Java Guide](https://google.github.io/styleguide/javaguide.html)
+- **Style Instructions**: Specific guidelines adhering to the Google Java Style Guide in which our team will follow during implementation.
+  - Naming Conventions: UpperCamelCase for classes; camelCase for variables and methods.
+  - Filename Conventions: File names must match class names and use .java extensions.
+  - Line Length: Break lines that exceed 100 characters.
+  - Indentation: Use 2 space when indenting (no tabs).
+- **Source Control Stategy**: Our team follows a [GitFlow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) style approach to maintain an organized codebase. Each feature has its own branch and pull request which helps us review code before merging.
+
+  
 
 
   
