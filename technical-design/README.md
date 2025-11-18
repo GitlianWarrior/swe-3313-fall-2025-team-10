@@ -54,6 +54,14 @@
   - On startup, use a CommandLineRunner or data.sql script to check/create the DB and seed initial data if needed.
 - **Persistence Assurance**: All changes are committed transactionally via JPA, ensuring data durability beyond runtime memory; no fresh start on each launch.
 
+## D. Entity Relationship Diagram (ERD)
+
+## E. Entity/Field Descriptions
+
+## F. Data Examples
+
+## G. Database Seed Data
+
 ## H. Authentication and Authorization Plan
 
 - **Technical Approach**:
