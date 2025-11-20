@@ -147,6 +147,48 @@ erDiagram
 | CarID       | int       | foreign | no   | none           | Reference Car   |
 
 ## F. Data Examples
+### User Entity
+
+| UserID PK | Username     | Password      | FirstName | LastName | Email              | IsAdminstrator |
+|-----------|--------------|---------------|-----------|----------|--------------------|----------------|
+| admin     | admin        | admin         | admin     | admin    | revlineadmin@gmail | TRUE           |
+| Bobman    | bob123       | billy         | bob       | billybob | billybob@gmail     | FALSE          |
+| ballplayer| durant!!!    | kevin         | durant    | kevin    | kevin@gmail        | FALSE          |
+| starwars  | greenman?/   | barry         | allen     | yoda     | yoda@gmail         | FALSE          |
+| ulookfunny| urgullible101| adam          | sandler   | lookup   | lookup@gmail       | FALSE          |
+
+
+### Order Entity
+
+| OrderID PK | OrderDate  | SubTotal | Tax | ShippingFee | Total | ShippingAdressStreet | ShippingAdressCity | ShippingAdressState | ShipppingAdressZip | PaymentCardLastFour | Phone         |
+|------------|------------|----------|-----|-------------|-------|----------------------|--------------------|---------------------|--------------------|---------------------|---------------|
+| 1          | 11/23/2025 | 800      | 20  | 50          | 840   | 320 PeachTree        | St.Simions         | Georiga             | 31522              | 1042                | 770-877-1324  |
+| 2          | 11/11/2021 | 2000     | 120 | 50          | 2170  | 1857 BeaverDam       | Marrietta          | Georgia             | 30062              | 2231                | 404-221-7821  |
+| 3          | 01/28/2024 | 3500     | 200 | 100         | 3800  | 1234 Elmore          | ToonTown           | Cailfornia          | 54321              | 1111                | 770-444-1121  |
+| 4          | 04/23/2025 | 5800     | 400 | 200         | 6400  | 1001 Sunset          | Miami              | Florida             | 10082              | 1001                | 770-902-9901  |
+| 5          | 08/08/2027 | 2300     | 100 | 100         | 2500  | 2020 Mountaincreek   | Valleytown         | Montana             | 44462              | 4021                | 404-442-3231  |
+
+
+### Car Entity
+
+| CarID PK | Make        | Model     | Year | Decription  | Price      |
+|----------|-------------|-----------|------|-------------|------------|
+| 1        | Porche      | 911       | 2020 | Luxurysport | 98,750     |
+| 2        | Lamborghini | aventador | 2015 | Supersport  | 519,999    |
+| 3        | Ferrari     | F40       | 1987 | Classic     | ~2,500,000 |
+| 4        | Bugatti     | Chiron    | 2022 | Exoticsport | 3,300,000  |
+| 5        | Mclaren     | Speedtail | 2021 | Hypersport  | 2,000,000  |
+
+
+### OrderItem Entity
+
+| OrderItemID | OrderID | CarID |
+|-------------|---------|-------|
+| 1           | 1       | 1     |
+| 2           | 2       | 2     |
+| 3           | 3       | 3     |
+| 4           | 4       | 4     |
+| 5           | 5       | 5     |
 
 ## G. Database Seed Data
 
