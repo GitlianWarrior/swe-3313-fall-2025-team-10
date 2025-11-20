@@ -48,7 +48,7 @@
 
 ## D. Entity Relationship Diagram (ERD)
 
-'''mermaid
+```mermaid
 erDiagram
     User {
         int UserID PK
@@ -98,7 +98,7 @@ erDiagram
     User --o{ Order : "places"
     Order --|{ OrderItem : "contains"
     Car ||--o| OrderItem : "is sold in"
-'''
+```
 
 ## E. Entity/Field Descriptions
 | User Table            |           |         |      |                |                          |
