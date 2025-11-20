@@ -111,7 +111,8 @@ erDiagram
 | LastName              | String    |         | no   | none           | User last name           |
 | Email                 | String    |         | no   | none           | User email               |
 | IsAdministrator       | boolean   |         | no   | FALSE          | User is an admin         |
-|                       |           |         |      |                |                          |
+
+
 | Order table           |           |         |      |                |                          |
 | Field Name            | Data Type | Key     | Null | Default value  | Description              |
 | OrderID               | int       | primary | no   | Auto imcrement | Unique ID for each order |
@@ -126,7 +127,8 @@ erDiagram
 | ShippingAddressZip    | String    |         | no   | none           | ZIP code                 |
 | PaymentCardLastFour   | String    |         | no   | none           | Last 4 digits of card    |
 | Phone                 | String    |         | yes  | none           | Phone number             |
-|                       |           |         |      |                |                          |
+
+
 | Car Table             |           |         |      |                |                          |
 | Field Name            | Data      | Key     | Null | Default Value  | Description              |
 | CardID                | int       | Primary | no   | Auto-Increment | Unique car ID            |
@@ -135,7 +137,8 @@ erDiagram
 | Year                  | int       |         | no   | none           | car year                 |
 | Description           | String    |         | yes  | none           | car description          |
 | Price                 | double    |         | no   | 0              | Car price                |
-|                       |           |         |      |                |                          |
+
+
 | OrdeItem Table        |           |         |      |                |                          |
 | Field Name            | Data      | Key     | Null | Default Value  | Description              |
 | OrderItemID           | int       | primary | no   | Auto increment | Line item ID             |
