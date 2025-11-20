@@ -65,9 +65,9 @@ erDiagram
         int UserID FK
         datetime OrderDate
         double SubTotal
-        decimal Tax
-        decimal ShippingFee
-        decimal Total
+        double Tax
+        double ShippingFee
+        double Total
         string ShippingAddressStreet
         string ShippingAddressCity
         string ShippingAddressState
@@ -88,7 +88,7 @@ erDiagram
         string Model
         int Year
         string Description
-        decimal Price
+        double Price
     }
 
     User ||--o{ Order : "places"
@@ -122,6 +122,7 @@ erDiagram
 | Total                 | double    |         | no   | 0              | Final order total        |
 | ShippingAddressStreet | String    |         | no   | none           | Street                   |
 | ShippingAddressCity   | String    |         | no   | none           | City                     |
+| ShippingAddressState   | String    |         | no   | none           | City                     |
 | ShippingAddressZip    | String    |         | no   | none           | ZIP code                 |
 | PaymentCardLastFour   | String    |         | no   | none           | Last 4 digits of card    |
 | Phone                 | String    |         | yes  | none           | Phone number             |
