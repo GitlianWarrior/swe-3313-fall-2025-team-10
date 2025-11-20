@@ -16,41 +16,35 @@
 ## A. Implementation Language(s)
 
 - **Java 24**: Primary backend language for its strong typing, object-oriented features, and suitability for enterprise-level e-commerce systems. Selected due to team experience and its robustness in data persistence, security, and Spring integration.
-  - [Official Java Documentation](https://docs.oracle.com/en/java/javase/24/index.html)
+  - [Official Java Documentation](https://docs.oracle.com/en/java/javase/23/)
   - [Java Tutorial for Beginners](https://docs.oracle.com/javase/tutorial/)
 - **HTML/CSS/JavaScript**: Standard for frontend rendering and interactivity, enabling responsive UIs matching our Marvel mockups.
-  
+
   - [MDN Web Docs for HTML](https://developer.mozilla.org/en-US/docs/Web/HTML)
   - [MDN Web Docs for CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)
   - [MDN Web Docs for JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
 ## B. Implementation Framework(s)
 
-- **Spring Boot**: Selected as the primary backend framework built on Spring, leveraging Java's strengths to simplify RESTful web services, dependency injection, and database integration. Enables rapid prototyping with production-ready features like embedded servers, ideal for our e-commerce APIs managing inventory, carts, and orders.
+- **Spring Boot**: Selected as the primary backend framework built on Spring, leveraging Java's strengths for database integration ideal for managing inventory, carts, and orders in our e-commerce system, as required for the shopping cart functionality.
   - [Spring Boot Documentation](https://docs.spring.io/spring-boot/reference/)
   - [Spring Boot Tutorial](https://spring.io/guides/gs/spring-boot/)
-- **Bootstrap**: CSS framework for responsive design and pre-built components to accelerate UI development.
-  
+- **Bootstrap**: CSS framework for responsive design and pre-built components to accelerate UI development. Specific components include navigation bars for site menus, modals for user interactions like login prompts, and responsive grids for layout adaptability across devices.
   - [Bootstrap Documentation](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
   - [Bootstrap Tutorial](https://www.w3schools.com/bootstrap5/)
- 
+
 ## C. Data Storage Plan
 
-- **Database**: SQLite as the embedded SQL database for persistent storage; data survives application restarts. No external server is required.
+- **Database**: SQLite is selected because it provides persistent storage (data survives application restarts). No external server is required.
   - [SQLite Documentation](https://www.sqlite.org/index.html)
 - **Libraries and Technologies**:
-  - ORM/Persistence: Spring Data JPA for mapping Java objects to database tables and handling CRUD operations.
-  - Annotations: JPA standards like @Entity, @Id, @GeneratedValue for entity definitions.
   - Driver: sqlite-jdbc for JDBC connectivity to SQLite.
-  - [Spring Data JPA Documentation](https://docs.spring.io/spring-data/jpa/reference/)
 - **Implementation Steps**:
-  
-  - Configure the database in Spring Boot's application.properties (e.g., spring.datasource.url=jdbc:sqlite:database.db).
-  - Define JPA entity classes to represent tables.
-  - Create repository interfaces extending JpaRepository for automatic CRUD methods.
-  - Use service classes with @Transactional for business logic and data commits.
-  - On startup, use a CommandLineRunner or data.sql script to check/create the DB and seed initial data if needed.
-- **Persistence Assurance**: All changes are committed transactionally via JPA, ensuring data durability beyond runtime memory; no fresh start on each launch.
+  - Configure database connection
+  - Define classes for database tables.
+  - Create methods for storing and retrieving data.
+  - Use scripts for seeding data on startup.
+- **Persistence Assurance**: All changes are written to storage, ensuring data durability beyond runtime memory; no fresh start on each launch.
 
 ## D. Entity Relationship Diagram (ERD)
 
