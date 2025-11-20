@@ -111,10 +111,6 @@ erDiagram
 | LastName              | String    |         | no   | none           | User last name           |
 | Email                 | String    |         | no   | none           | User email               |
 | IsAdministrator       | boolean   |         | no   | FALSE          | User is an admin         |
-| AddressStreet         | String    |         | yes  | none           | Street address           |
-| AddressCity           | String    |         | yes  | none           | city                     |
-| AddressZip            | String    |         | yes  | none           | zip code                 |
-| Phone                 | String    |         | yes  | none           | Phone number             |
 |                       |           |         |      |                |                          |
 | Order table           |           |         |      |                |                          |
 | Field Name            | Data Type | Key     | Null | Default value  | Description              |
@@ -129,6 +125,7 @@ erDiagram
 | ShippingAddressCity   | String    |         | no   | none           | city                     |
 | ShippingAddressZip    | String    |         | no   | none           | ZIP code                 |
 | PaymentCardLastFour   | String    |         | no   | none           | Last 4 digits of card    |
+| Phone                 | String    |         | yes  | none           | Phone number             |
 |                       |           |         |      |                |                          |
 | Car Table             |           |         |      |                |                          |
 | Field Name            | Data      | Key     | Null | Default Value  | Description              |
