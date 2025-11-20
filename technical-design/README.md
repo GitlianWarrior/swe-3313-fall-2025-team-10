@@ -33,9 +33,6 @@
   
   - [Bootstrap Documentation](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
   - [Bootstrap Tutorial](https://www.w3schools.com/bootstrap5/)
-- **Thymeleaf**: Template engine for Spring-integrated server-side HTML rendering, enabling dynamic content while keeping the frontend simple.
-  - [Thymeleaf Documentation](https://www.thymeleaf.org/documentation.html)
-  - [Thymeleaf with Spring Tutorial](https://www.baeldung.com/spring-thymeleaf-3)
  
 ## C. Data Storage Plan
 
