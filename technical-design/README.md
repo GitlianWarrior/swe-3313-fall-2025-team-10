@@ -15,7 +15,7 @@
 
 ## A. Implementation Language(s)
 
-- **Java 23**: Primary backend language for its strong typing, object-oriented features, and suitability for enterprise-level e-commerce systems. Selected due to team experience and its robustness in data persistence, security, and Spring integration.
+- **Java 24**: Primary backend language for its strong typing, object-oriented features, and suitability for enterprise-level e-commerce systems. Selected due to team experience and its robustness in data persistence, security, and Spring integration.
   - [Official Java Documentation](https://docs.oracle.com/en/java/javase/23/)
   - [Java Tutorial for Beginners](https://docs.oracle.com/javase/tutorial/)
 - **HTML/CSS/JavaScript**: Standard for frontend rendering and interactivity, enabling responsive UIs matching our Marvel mockups.
