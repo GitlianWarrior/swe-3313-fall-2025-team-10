@@ -48,6 +48,56 @@
 
 ## D. Entity Relationship Diagram (ERD)
 
+erDiagram
+    User {
+        int UserID PK
+        string Username UK
+        string Password
+        string FirstName
+        string LastName
+        string Email
+        bool IsAdministrator
+        string AddressStreet
+        string AddressCity
+        string AddressState
+        string AddressZip
+        string Phone
+    }
+
+    Order {
+        int OrderID PK
+        int UserID FK
+        datetime OrderDate
+        decimal SubTotal
+        decimal Tax
+        decimal ShippingFee
+        decimal Total
+        string ShippingAddressStreet
+        string ShippingAddressCity
+        string ShippingAddressState
+        string ShippingAddressZip
+        string PaymentCardLastFour
+    }
+
+    OrderItem {
+        int OrderItemID PK
+        int OrderID FK
+        int CarID FK, UK
+    }
+
+    Car {
+        int CarID PK
+        string Make
+        string Model
+        int Year
+        string Description
+        decimal Price
+    }
+
+    User --o{ Order : "places"
+    Order --|{ OrderItem : "contains"
+    Car ||--o| OrderItem : "is sold in"
+
 ## E. Entity/Field Descriptions
 | User Table            |           |         |      |                |                          |
 | --------------------- | --------- | ------- | ---- | -------------- | ------------------------ |
