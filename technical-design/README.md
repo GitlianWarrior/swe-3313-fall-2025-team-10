@@ -64,7 +64,7 @@ erDiagram
         int OrderID PK
         int UserID FK
         datetime OrderDate
-        decimal SubTotal
+        double SubTotal
         decimal Tax
         decimal ShippingFee
         decimal Total
