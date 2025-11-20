@@ -97,49 +97,53 @@ erDiagram
 ```
 
 ## E. Entity/Field Descriptions
-| User Table            |           |         |      |                |                          |
-| --------------------- | --------- | ------- | ---- | -------------- | ------------------------ |
+### User Table
+
+| Field Name      | Data Type | Key     | Null | Default Value  | Description             |
+| --------------- | --------- | ------- | ---- | -------------- | ----------------------- |
+| UserID          | Int       | primary | no   | auto increment | Unique ID for each user |
+| Username        | String    | Unique  | no   | none           | User login name         |
+| Password        | String    |         | no   | none           | Hashed user password    |
+| FirstName       | String    |         | no   | none           | User first name         |
+| LastName        | String    |         | no   | none           | User last name          |
+| Email           | String    |         | no   | none           | User email              |
+| IsAdministrator | boolean   |         | no   | FALSE          | User is an admin        |
+
+### Order Table
+
 | Field Name            | Data Type | Key     | Null | Default Value  | Description              |
-| UserID                | Int       | primary | no   | auto imcrement | Unique ID for each user  |
-| Username              | String    | Unique  | no   | none           | User login name          |
-| Password              | String    |         | no   | none           | Hashed user password     |
-| FirstName             | String    |         | no   | none           | User first name          |
-| LastName              | String    |         | no   | none           | User last name           |
-| Email                 | String    |         | no   | none           | User email               |
-| IsAdministrator       | boolean   |         | no   | FALSE          | User is an admin         |
-
-
-| Order table           |           |         |      |                |                          |
-| Field Name            | Data Type | Key     | Null | Default value  | Description              |
-| OrderID               | int       | primary | no   | Auto imcrement | Unique ID for each order |
+| --------------------- | --------- | ------- | ---- | -------------- | ------------------------ |
+| OrderID               | int       | primary | no   | Auto increment | Unique ID for each order |
 | UserID                | int       | foreign | no   | none           | References User          |
 | OrderDate             | DateTime  |         | no   | LocalDateTime  | Order Timestamp          |
 | SubTotal              | double    |         | no   | 0              | Pre-tax subtotal         |
 | Tax                   | double    |         | no   | 0              | Tax amount               |
-| ShippingFee           | double    |         | no   | 0              | shippping cost           |
+| ShippingFee           | double    |         | no   | 0              | Shipping cost            |
 | Total                 | double    |         | no   | 0              | Final order total        |
 | ShippingAddressStreet | String    |         | no   | none           | Street                   |
-| ShippingAddressCity   | String    |         | no   | none           | city                     |
+| ShippingAddressCity   | String    |         | no   | none           | City                     |
 | ShippingAddressZip    | String    |         | no   | none           | ZIP code                 |
 | PaymentCardLastFour   | String    |         | no   | none           | Last 4 digits of card    |
 | Phone                 | String    |         | yes  | none           | Phone number             |
 
+### Car Table
 
-| Car Table             |           |         |      |                |                          |
-| Field Name            | Data      | Key     | Null | Default Value  | Description              |
-| CardID                | int       | Primary | no   | Auto-Increment | Unique car ID            |
-| Make                  | String    |         | no   | none           | Car manufacturer         |
-| Model                 | String    |         | no   | none           | car model                |
-| Year                  | int       |         | no   | none           | car year                 |
-| Description           | String    |         | yes  | none           | car description          |
-| Price                 | double    |         | no   | 0              | Car price                |
+| Field Name  | Data Type | Key     | Null | Default Value  | Description      |
+| ----------- | --------- | ------- | ---- | -------------- | ---------------- |
+| CarID       | int       | Primary | no   | Auto-Increment | Unique car ID    |
+| Make        | String    |         | no   | none           | Car manufacturer |
+| Model       | String    |         | no   | none           | Car model        |
+| Year        | int       |         | no   | none           | Car year         |
+| Description | String    |         | yes  | none           | Car description  |
+| Price       | double    |         | no   | 0              | Car price        |
 
+### OrderItem Table
 
-| OrdeItem Table        |           |         |      |                |                          |
-| Field Name            | Data      | Key     | Null | Default Value  | Description              |
-| OrderItemID           | int       | primary | no   | Auto increment | Line item ID             |
-| OrderID               | int       | foreign | no   | none           | reference Order          |
-| CarID                 | int       | foreign | no   | none           | reference car            |
+| Field Name  | Data Type | Key     | Null | Default Value  | Description     |
+| ----------- | --------- | ------- | ---- | -------------- | --------------- |
+| OrderItemID | int       | primary | no   | Auto increment | Line item ID    |
+| OrderID     | int       | foreign | no   | none           | Reference Order |
+| CarID       | int       | foreign | no   | none           | Reference Car   |
 
 ## F. Data Examples
 
