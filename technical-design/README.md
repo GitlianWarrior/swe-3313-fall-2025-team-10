@@ -52,17 +52,12 @@
 erDiagram
     User {
         int UserID PK
-        string Username UK
+        string Username
         string Password
         string FirstName
         string LastName
         string Email
         bool IsAdministrator
-        string AddressStreet
-        string AddressCity
-        string AddressState
-        string AddressZip
-        string Phone
     }
 
     Order {
@@ -78,12 +73,13 @@ erDiagram
         string ShippingAddressState
         string ShippingAddressZip
         string PaymentCardLastFour
+        string Phone
     }
 
     OrderItem {
         int OrderItemID PK
         int OrderID FK
-        int CarID FK, UK
+        int CarID FK "Unique"
     }
 
     Car {
@@ -95,8 +91,8 @@ erDiagram
         decimal Price
     }
 
-    User --o{ Order : "places"
-    Order --|{ OrderItem : "contains"
+    User ||--o{ Order : "places"
+    Order ||--|{ OrderItem : "contains"
     Car ||--o| OrderItem : "is sold in"
 ```
 
