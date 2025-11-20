@@ -2,7 +2,7 @@
 
 Welcome to the project repository for Team 10. Here you will find all the artifacts, presentations, documentation, and source code for our SWE 3313 class project.
 
-We will create a small e-commerce website using Java 23, the Spring Framework, and a SQLite database to sell unique, rare cars.
+We will create a small e-commerce website using Java 24, the Spring Framework, and a SQLite database to sell unique, rare cars.
 
 
 ## Meet Our Team
