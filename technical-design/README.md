@@ -194,7 +194,23 @@ erDiagram
 
 ## H. Authentication and Authorization Plan
 
-- **Technical Approach**:
+- **Technical Approach**: To implement our system’s authentication and authorization functions, our application distinguishes whether a person is a User or an Administrator using the isAdministrator field.
+
+- **Authentication (who is logging in)**
+  - Every account is stored in a single User table with fields UserID (PK), Password, Username, FirstName, LastName, Email, Password, and isAdministrator. 
+  - Implementation will have one login screen for both Users and Administrators. Users enter Username and Password.
+  - On the login screen, backend searches for a user record by Username in the User table.
+  - For the entered password, it will then be validated to the stored Password value.
+  - If credentials are valid and the account is in the database, the application creates a session for a UserID.
+
+- **Authorization (determines action an authenticated entity can perform)**
+  - Following authentication, the system verifies the user’s isAdministrator value stored in their User record.
+  - This value categorizes the user’s role inside the system: regular User (isAdministrator = FALSE) or Administrator (isAdministrator = TRUE).
+  - Users are permitted to browse cars, manage their shopping cart, and create an order.
+  - Administrators have user permissions in addition to being able to manage the car inventory and view all orders in the system.
+  - Before executing any command, the backend system reads the session’s UserID and isAdministrator value which then verifies if a current user has the capability to perform the requested command.
+
+
 
 ## I. Coding Style Guide
 
