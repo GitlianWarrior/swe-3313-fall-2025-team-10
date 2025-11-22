@@ -201,14 +201,14 @@ erDiagram
 | 4      | greenman?/    | barry    | allen     | yoda     | [yoda@gmail](mailto:yoda@gmail)                 | FALSE           |
 | 5      | urgullible101 | adam     | sandler   | lookup   | [lookup@gmail](mailto:lookup@gmail)             | FALSE           |
 
-| Car Inventory |             |           |      |             |           |      |
-| ----------------- | ----------- | --------- | ---- | ----------- | --------- | ---- |
-| CarID             | Make        | Model     | Year | Description | Price     |      |
-| 1                 | Porche      | 911       | 2020 | Luxurysport | 98,750    |      |
-| 2                 | Lamborghini | Aventador | 2015 | Supersport  | 519,999   |      |
-| 3                 | Ferrari     | F40       | 1987 | Classic     | 2,500,000 |      |
-| 4                 | Bugatti     | Chiron    | 2022 | Exoticsport | 3,300,000 |      |
-| 5                 | Mclaren     | Speedtail | 2021 | Hypersport  | 2,000,000 |      |
+| Car Inventory |             |           |      |             |           |   
+| ----------------- | ----------- | --------- | ---- | ----------- | --------- |
+| CarID             | Make        | Model     | Year | Description | Price     |
+| 1                 | Porche      | 911       | 2020 | Luxurysport | 98,750    |
+| 2                 | Lamborghini | Aventador | 2015 | Supersport  | 519,999   |
+| 3                 | Ferrari     | F40       | 1987 | Classic     | 2,500,000 |
+| 4                 | Bugatti     | Chiron    | 2022 | Exoticsport | 3,300,000 |
+| 5                 | Mclaren     | Speedtail | 2021 | Hypersport  | 2,000,000 |
 
 ## H. Authentication and Authorization Plan
 
