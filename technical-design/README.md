@@ -248,7 +248,7 @@ erDiagram
 
 ## J. Video Presentation
 
-- **Video Presentation**: [Watch our Technical Design Presentation on Loom.]()
+- **Video Presentation**: [Watch our Technical Design Presentation on Loom.](https://www.loom.com/share/b3769540de41479882910cefc3989bea)
 
 
 
