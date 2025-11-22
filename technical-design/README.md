@@ -192,6 +192,24 @@ erDiagram
 
 ## G. Database Seed Data
 
+| User   |               |          |           |          |                                                 |                 |
+| ------ | ------------- | -------- | --------- | -------- | ----------------------------------------------- | --------------- |
+| UserId | Username      | Password | FirstName | LastName | Email                                           | IsAdministrator |
+| 1      | admin         | admin    | admin     | admin    | [revlineadmin@gmail](mailto:revlineadmin@gmail) | TRUE            |
+| 2      | bob123        | billy    | bob       | billybob | [billybob@gmail](mailto:billybob@gmail)         | FALSE           |
+| 3      | durant!!!     | kevin    | durant    | kevin    | [kevin@gmail](mailto:kevin@gmail)               | FALSE           |
+| 4      | greenman?/    | barry    | allen     | yoda     | [yoda@gmail](mailto:yoda@gmail)                 | FALSE           |
+| 5      | urgullible101 | adam     | sandler   | lookup   | [lookup@gmail](mailto:lookup@gmail)             | FALSE           |
+
+| Car Inventory |             |           |      |             |           |      |
+| ----------------- | ----------- | --------- | ---- | ----------- | --------- | ---- |
+| CarID             | Make        | Model     | Year | Description | Price     |      |
+| 1                 | Porche      | 911       | 2020 | Luxurysport | 98,750    |      |
+| 2                 | Lamborghini | Aventador | 2015 | Supersport  | 519,999   |      |
+| 3                 | Ferrari     | F40       | 1987 | Classic     | 2,500,000 |      |
+| 4                 | Bugatti     | Chiron    | 2022 | Exoticsport | 3,300,000 |      |
+| 5                 | Mclaren     | Speedtail | 2021 | Hypersport  | 2,000,000 |      |
+
 ## H. Authentication and Authorization Plan
 
 - **Technical Approach**: To implement our system’s authentication and authorization functions, our application distinguishes whether a person is a `User` or an `Administrator` using the `isAdministrator` field.
