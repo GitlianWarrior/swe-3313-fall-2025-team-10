@@ -196,10 +196,7 @@ erDiagram
 | ------ | ------------- | -------- | --------- | -------- | ----------------------------------------------- | --------------- |
 | UserId | Username      | Password | FirstName | LastName | Email                                           | IsAdministrator |
 | 1      | admin         | admin    | admin     | admin    | [revlineadmin@gmail](mailto:revlineadmin@gmail) | TRUE            |
-| 2      | bob123        | billy    | bob       | billybob | [billybob@gmail](mailto:billybob@gmail)         | FALSE           |
-| 3      | durant!!!     | kevin    | durant    | kevin    | [kevin@gmail](mailto:kevin@gmail)               | FALSE           |
-| 4      | greenman?/    | barry    | allen     | yoda     | [yoda@gmail](mailto:yoda@gmail)                 | FALSE           |
-| 5      | urgullible101 | adam     | sandler   | lookup   | [lookup@gmail](mailto:lookup@gmail)             | FALSE           |
+
 
 | Car Inventory |             |           |      |             |           |   
 | ----------------- | ----------- | --------- | ---- | ----------- | --------- |
