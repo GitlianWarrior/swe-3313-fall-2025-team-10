@@ -194,7 +194,7 @@ erDiagram
 
 ## H. Authentication and Authorization Plan
 
-- **Technical Approach**: To implement our system’s authentication and authorization functions, our application distinguishes whether a person is a User or an Administrator using the isAdministrator field.
+- **Technical Approach**: To implement our system’s authentication and authorization functions, our application distinguishes whether a person is a `User` or an `Administrator` using the `isAdministrator` field.
 
 - **Authentication (who is logging in)**
   - Every account is stored in a single `User` table with fields `UserID (PK)`, `Password`, `Username`, `FirstName>`, `LastName`, `Email`, `Password`, and `isAdministrator`. 
