@@ -87,6 +87,16 @@
 			<artifactId>spring-restdocs-mockmvc</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+    			<groupId>org.xerial</groupId>
+    			<artifactId>sqlite-jdbc</artifactId>
+    			<version>3.51.1.0</version>
+		</dependency>
+		<dependency>
+    			<groupId>org.hibernate.orm</groupId>
+    			<artifactId>hibernate-community-dialects</artifactId>
+    			<version>7.1.8.Final</version>
+		</dependency>
 	</dependencies>
 
 	<build>
