@@ -25,4 +25,4 @@ public class SecurityConfig {
 
         return http.build();
     }
-}
+}// caven was here
