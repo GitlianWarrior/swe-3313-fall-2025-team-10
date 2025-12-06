@@ -27,7 +27,7 @@
 		<url/>
 	</scm>
 	<properties>
-		<java.version>25</java.version>
+		<java.version>24</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -132,5 +132,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
