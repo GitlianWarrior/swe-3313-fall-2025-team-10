@@ -32,6 +32,8 @@
 - **Bootstrap**: CSS framework for responsive design and pre-built components to accelerate UI development. Specific components include navigation bars for site menus, modals for user interactions like login prompts, and responsive grids for layout adaptability across devices.
   - [Bootstrap Documentation](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
   - [Bootstrap Tutorial](https://www.w3schools.com/bootstrap5/)
+-  **Thymeleaf**: A modern server-side Java template engine for both web and standalone environments. It is our chosen view technology to generate dynamic HTML content by integrating directly with the Spring Boot backend.
+    - [Thymeleaf Documentation](https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html)
 
 ## C. Data Storage Plan
 
