@@ -2,8 +2,8 @@ package com.revline.rare_cars_sales;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -11,18 +11,18 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/login", "/register", "/css/**", "/js/**").permitAll() // Allow public access to login/register
-                        .anyRequest().authenticated() // Require login for everything else
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/css/**", "/register").permitAll()
+                        .anyRequest().authenticated()
                 )
-                .formLogin((form) -> form
-                        .loginPage("/login") // Use our custom controller endpoint
+                .formLogin(form -> form
+                        .loginPage("/login")  // use login.html
                         .permitAll()
                 )
-                .logout((logout) -> logout.permitAll());
+                .logout(logout -> logout.permitAll());
 
         return http.build();
     }
-}// caven was here
+}
