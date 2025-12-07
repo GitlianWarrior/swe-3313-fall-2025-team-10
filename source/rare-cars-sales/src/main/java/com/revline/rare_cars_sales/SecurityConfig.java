@@ -14,11 +14,12 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/css/**", "/register").permitAll()
+                        .requestMatchers("/css/**", "/login", "/register").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
-                        .loginPage("/login")  // use login.html
+                        .loginPage("/login")           // use login.html
+                        .defaultSuccessUrl("/shop", true) // after login go to /shop
                         .permitAll()
                 )
                 .logout(logout -> logout.permitAll());

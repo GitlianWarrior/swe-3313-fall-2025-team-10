@@ -15,14 +15,11 @@ public class AuthenticationController {
 
     @GetMapping("/login")
     public String showLogin() {
-        return "login";   // login.html in templates
+        // just show login.html, let Spring Security handle POST /login
+        return "login";
     }
 
-    @PostMapping("/login")
-    public String doLogin() {
-        // later: add real auth logic
-        return "redirect:/login";
-    }
+    // ❌ DELETE the old @PostMapping("/login") method you had here
 
     @GetMapping("/register")
     public String showRegister() {
