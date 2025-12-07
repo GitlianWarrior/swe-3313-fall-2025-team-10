@@ -12,23 +12,42 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderID;
 
-    @ManyToOne
-    @JoinColumn(name = "userID")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "userID", nullable = false)
     private User user;
 
     @CreationTimestamp
-    @Column(updatable = false)
+    @Column(updatable = false, nullable = false)
     private LocalDateTime orderDate;
 
+    @Column(nullable = false)
     private double subTotal;
+
+    @Column(nullable = false)
     private double tax;
+
+    @Column(nullable = false)
     private double shippingFee;
+
+    @Column(nullable = false)
     private double total;
+
+    @Column(nullable = false)
     private String shippingAddressStreet;
+
+    @Column(nullable = false)
     private String shippingAddressCity;
+
+    @Column(nullable = false)
     private String shippingAddressState;
+
+    @Column(nullable = false)
     private String shippingAddressZip;
+
+    @Column(nullable = false)
     private String paymentCardLastFour;
+
+    @Column(nullable = false)
     private String phone;
 
     public Order() {}
