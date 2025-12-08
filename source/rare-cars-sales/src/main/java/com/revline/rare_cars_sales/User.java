@@ -1,0 +1,106 @@
+package com.revline.rare_cars_sales;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "users")
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long userID;
+
+    @Column(unique = true, nullable = false)
+    private String username;
+
+    @Column(nullable = false)
+    private String password;
+
+    @Column(nullable = false)
+    private String firstName;
+
+    @Column(nullable = false)
+    private String lastName;
+
+    @Column(nullable = false)
+    private String email;
+
+    @Column(nullable = false)
+    private boolean isAdministrator = false;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private java.util.List<Order> orders;
+
+    protected User() {}
+
+    //constructor
+    public User(String username, String password, String firstName, String lastName, String email) {
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }
+
+    //Getters
+    public Long getUserID() {
+        return userID;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public boolean isAdministrator() {
+        return isAdministrator;
+    }
+
+    //Setters
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setAdministrator(boolean administrator) {
+        isAdministrator = administrator;
+    }
+
+    public java.util.List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(java.util.List<Order> orders) {
+        this.orders = orders;
+    }
+}
