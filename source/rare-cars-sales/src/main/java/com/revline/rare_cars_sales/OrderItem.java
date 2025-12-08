@@ -14,7 +14,7 @@ public class OrderItem {
     private Order order;
 
     @OneToOne(optional = false)
-    @JoinColumn(name = "carID", nullable = false)
+    @JoinColumn(name = "carID", nullable = false, unique = true)
     private Car car;
 
     protected OrderItem() {}
@@ -26,10 +26,6 @@ public class OrderItem {
 
     public Long getOrderItemID() {
         return orderItemID;
-    }
-
-    public void setOrderItemID(Long orderItemID) {
-        this.orderItemID = orderItemID;
     }
 
     public Order getOrder() {

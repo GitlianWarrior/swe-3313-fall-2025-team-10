@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import org.hibernate.annotations.CreationTimestamp;
 import java.util.List;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "shopping_orders")
@@ -22,16 +23,16 @@ public class Order {
     private LocalDateTime orderDate;
 
     @Column(nullable = false)
-    private double subTotal;
+    private BigDecimal subTotal;
 
     @Column(nullable = false)
-    private double tax;
+    private BigDecimal tax;
 
     @Column(nullable = false)
-    private double shippingFee;
+    private BigDecimal shippingFee;
 
     @Column(nullable = false)
-    private double total;
+    private BigDecimal total;
 
     @Column(nullable = false)
     private String shippingAddressStreet;
@@ -56,7 +57,7 @@ public class Order {
 
     protected Order() {}
 
-    public Order(User user, double subTotal, double tax, double shippingFee, double total, String shippingAddressStreet, String shippingAddressCity, String shippingAddressState, String shippingAddressZip, String paymentCardLastFour, String phone) {
+    public Order(User user, BigDecimal subTotal, BigDecimal tax, BigDecimal shippingFee, BigDecimal total, String shippingAddressStreet, String shippingAddressCity, String shippingAddressState, String shippingAddressZip, String paymentCardLastFour, String phone) {
         this.user = user;
         this.subTotal = subTotal;
         this.tax = tax;
@@ -90,35 +91,35 @@ public class Order {
         this.orderDate = orderDate;
     }
 
-    public double getSubTotal() {
+    public BigDecimal getSubTotal() {
         return subTotal;
     }
 
-    public void setSubTotal(double subTotal) {
+    public void setSubTotal(BigDecimal subTotal) {
         this.subTotal = subTotal;
     }
 
-    public double getTax() {
+    public BigDecimal getTax() {
         return tax;
     }
 
-    public void setTax(double tax) {
+    public void setTax(BigDecimal tax) {
         this.tax = tax;
     }
 
-    public double getShippingFee() {
+    public BigDecimal getShippingFee() {
         return shippingFee;
     }
 
-    public void setShippingFee(double shippingFee) {
+    public void setShippingFee(BigDecimal shippingFee) {
         this.shippingFee = shippingFee;
     }
 
-    public double getTotal() {
+    public BigDecimal getTotal() {
         return total;
     }
 
-    public void setTotal(double total) {
+    public void setTotal(BigDecimal total) {
         this.total = total;
     }
 
@@ -170,11 +171,11 @@ public class Order {
         this.phone = phone;
     }
 
-    public java.util.List<OrderItem> getOrderItems() {
+    public List<OrderItem> getOrderItems() {
         return orderItems;
     }
 
-    public void setOrderItems(java.util.List<OrderItem> orderItems) {
+    public void setOrderItems(List<OrderItem> orderItems) {
         this.orderItems = orderItems;
     }
 }
