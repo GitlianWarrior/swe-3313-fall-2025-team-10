@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Shipping Information</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header class="logo">
+  <div class="logo-wrap">
+    <div class="logo-text">REVLINE</div>
+    <div class="logo-underline"></div>
+  </div>
+</header>
+
+<main class="page-wrapper">
+  <form th:action="@{/shipping-info}" method="post" class="shipping-form">
+    <div class="shipping-payment-wrapper">
+      <section class="shipping-card">
+        <h1>Shipping Information</h1>
+        <label>Address Line:</label>
+        <input type="text" name="address" placeholder="Address Line" required>
+
+        <div class="city-state">
+          <div>
+            <label>City:</label>
+            <input type="text" name="city" placeholder="City" required>
+          </div>
+          <div>
+            <label>State:</label>
+            <select name="state" required>
+              <option value="">Make a selection</option>
+              <option>GA</option>
+              <option>FL</option>
+              <option>TN</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="zip-phone">
+          <div>
+            <label>Zip Code:</label>
+            <input type="text" name="zip" placeholder="Zip Code" required>
+          </div>
+          <div>
+            <label>Phone Number:</label>
+            <input type="text" name="phone" placeholder="Phone Number" required>
+          </div>
+        </div>
+
+        <label>Shipping Speed:</label><br>
+        <label><input type="radio" name="shipping" value="Overnight"> Overnight: $29</label><br>
+        <label><input type="radio" name="shipping" value="3-day"> 3-day: $19</label><br>
+        <label><input type="radio" name="shipping" value="Ground"> Ground: $0</label>
+      </section>
+
+      <section class="payment-card">
+        <h1>Payment Information</h1>
+        <label>Credit Card Number:</label>
+        <input type="text" name="ccnum" placeholder="Credit Card Number" required>
+
+        <div class="exp-cvv">
+          <div>
+            <label>Expiration Date:</label>
+            <input type="text" name="exp" placeholder="mm/yy" required>
+          </div>
+          <div>
+            <label>CVV Security Code:</label>
+            <input type="text" name="cvv" placeholder="CVV" required>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-red">Confirm Order</button>
+      </section>
+    </div>
+  </form>
+</main>
+</body>
+</html>

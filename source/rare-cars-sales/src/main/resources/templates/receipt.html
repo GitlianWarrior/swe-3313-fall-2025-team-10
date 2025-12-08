@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Receipt</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header class="logo">
+  <div class="logo-wrap">
+    <div class="logo-text">REVLINE</div>
+    <div class="logo-underline"></div>
+  </div>
+</header>
+
+<main class="page-wrapper">
+  <section class="receipt-card">
+    <h1>Receipt</h1>
+    <div class="receipt-address">
+      Shipping Address: <span th:text="${address}"></span>
+    </div>
+
+    <table class="order-table">
+      <tr><td>2015 Ferrari LaFerrari</td><td><img src="/images/ferrari.png" width="100"></td><td>$3,200.00</td></tr>
+      <tr><td>2017 Lamborghini Centenario</td><td><img src="/images/lamborghini.png" width="100"></td><td>$2,800.00</td></tr>
+      <tr><td>2020 Bugatti Chiron</td><td><img src="/images/bugatti.png" width="100"></td><td>$3,900.00</td></tr>
+    </table>
+
+    <div class="summary-totals">
+      <div>Subtotal: $<span th:text="${subtotal}"></span></div>
+      <div>Tax: $<span th:text="${tax}"></span></div>
+      <div>Shipping: $<span th:text="${shipping}"></span></div>
+      <div>Total: $<span th:text="${total}"></span></div>
+      <div>Credit Card Last Four Digits: <span th:text="${lastFour}"></span></div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

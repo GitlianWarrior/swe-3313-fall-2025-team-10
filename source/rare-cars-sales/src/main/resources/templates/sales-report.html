@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Sales Report</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header class="logo">
+  <div class="logo-wrap">
+    <div class="logo-text">REVLINE</div>
+    <div class="logo-underline"></div>
+  </div>
+</header>
+
+<main class="page-wrapper">
+  <section class="sales-card">
+    <h1>Sales Report</h1>
+    <table class="sales-table">
+      <tr><th>Sale ID</th><th>Car</th><th>Buyer</th><th>Date of Purchase</th><th>Total Cost</th></tr>
+      <tr><td>1</td><td>2015 Ferrari LaFerrari</td><td>Andres Ferrer</td><td>10/01/2025</td><td>$3,200.00</td></tr>
+      <tr><td>2</td><td>2017 Lamborghini Centenario</td><td>Jackson Hainey</td><td>10/02/2025</td><td>$2,800.00</td></tr>
+      <tr><td>3</td><td>2020 Bugatti Chiron</td><td>Caven Davidek</td><td>10/03/2025</td><td>$3,900.00</td></tr>
+      <tr><td>4</td><td>2016 McLaren P1 GTR</td><td>Arlene Huerta</td><td>10/04/2025</td><td>$2,600.00</td></tr>
+      <tr><td>5</td><td>2015 Porsche 918 Spyder</td><td>Tuan Vo</td><td>10/05/2025</td><td>$3,600.00</td></tr>
+    </table>
+
+    <button class="btn-red" onclick="exportTableToCSV()">Export to CSV</button>
+  </section>
+</main>
+
+<script>
+  function exportTableToCSV() {
+      const rows = document.querySelectorAll("table tr");
+      let csv = [];
+      for (let row of rows) {
+          let cols = row.querySelectorAll("td, th");
+          let data = Array.from(cols).map(col => col.innerText);
+          csv.push(data.join(","));
+      }
+      const csvFile = new Blob([csv.join("\n")], { type: "text/csv" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(csvFile);
+      link.download = "sales_report.csv";
+      link.click();
+  }
+</script>
+</body>
+</html>

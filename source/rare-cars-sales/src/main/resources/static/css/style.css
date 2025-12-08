@@ -269,3 +269,58 @@ body {
     border: none;
     cursor: pointer;
 }
+.page-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.shipping-payment-wrapper {
+    display: flex;
+    gap: 20px;
+}
+
+.shipping-card, .payment-card, .order-summary-card, .receipt-card, .sales-card {
+    background-color: #111;
+    color: white;
+    border-radius: 10px;
+    padding: 20px;
+    width: 800px;
+}
+
+.order-table, .sales-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    color: black;
+    margin-bottom: 20px;
+}
+
+.order-table td, .sales-table th, .sales-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+.summary-totals div {
+    margin: 5px 0;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    display: inline-block;
+    min-width: 200px;
+}
+
+.btn-red {
+    background-color: #b30000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-red:hover {
+    background-color: #900;
+}
