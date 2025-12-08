@@ -5,11 +5,13 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CarRepository extends JpaRepository<Car, Long>{
+public interface CarRepository extends JpaRepository<Car, Long> {
 
+    // Main Page (Show available inventory)
     List<Car> findByIsSoldFalse();
 
-    List<Car> findByMake(String make);
-
-    List<Car> findByPriceLessThan(double maxPrice);
+    // Search Bar
+    List<Car> findByIsSoldFalseAndMakeContainingIgnoreCaseOrModelContainingIgnoreCaseOrDescriptionContainingIgnoreCase(
+            String make, String model, String description
+    );
 }
