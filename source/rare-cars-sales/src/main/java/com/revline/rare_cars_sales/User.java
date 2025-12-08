@@ -27,7 +27,10 @@ public class User {
     @Column(nullable = false)
     private boolean isAdministrator = false;
 
-    public User() {}
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private java.util.List<Order> orders;
+
+    protected User() {}
 
     //constructor
     public User(String username, String password, String firstName, String lastName, String email) {
@@ -68,9 +71,6 @@ public class User {
     }
 
     //Setters
-    public void setUserID(Long userID) {
-        this.userID = userID;
-    }
 
     public void setUsername(String username) {
         this.username = username;
@@ -94,5 +94,13 @@ public class User {
 
     public void setAdministrator(boolean administrator) {
         isAdministrator = administrator;
+    }
+
+    public java.util.List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(java.util.List<Order> orders) {
+        this.orders = orders;
     }
 }

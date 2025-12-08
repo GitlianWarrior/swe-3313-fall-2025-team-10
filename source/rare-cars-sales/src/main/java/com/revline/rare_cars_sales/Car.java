@@ -27,7 +27,7 @@ public class Car {
     @Column(nullable = false)
     private boolean isSold = false;
 
-    public Car() {}
+    protected Car() {}
 
     public Car(String make, String model, int year, String description, double price) {
         this.make = make;

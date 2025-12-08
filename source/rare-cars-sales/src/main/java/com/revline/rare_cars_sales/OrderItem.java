@@ -17,7 +17,7 @@ public class OrderItem {
     @JoinColumn(name = "carID", nullable = false)
     private Car car;
 
-    public OrderItem() {}
+    protected OrderItem() {}
 
     public OrderItem(Car car, Order order) {
         this.car = car;

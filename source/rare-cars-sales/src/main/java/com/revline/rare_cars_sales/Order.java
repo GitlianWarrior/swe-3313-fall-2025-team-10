@@ -3,9 +3,10 @@ package com.revline.rare_cars_sales;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import org.hibernate.annotations.CreationTimestamp;
+import java.util.List;
 
 @Entity
-@Table(name = "orders")
+@Table(name = "shopping_orders")
 public class Order {
 
     @Id
@@ -50,7 +51,10 @@ public class Order {
     @Column(nullable = false)
     private String phone;
 
-    public Order() {}
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    private List<OrderItem> orderItems;
+
+    protected Order() {}
 
     public Order(User user, double subTotal, double tax, double shippingFee, double total, String shippingAddressStreet, String shippingAddressCity, String shippingAddressState, String shippingAddressZip, String paymentCardLastFour, String phone) {
         this.user = user;
@@ -68,10 +72,6 @@ public class Order {
 
     public Long getOrderID() {
         return orderID;
-    }
-
-    public void setOrderID(Long orderID) {
-        this.orderID = orderID;
     }
 
     public User getUser() {
@@ -168,5 +168,13 @@ public class Order {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public java.util.List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(java.util.List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 }
