@@ -10,3 +10,6 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     // Admin Sales Report
     List<Order> findAllByOrderByOrderDateDesc();
 }
+
+//hello
+
