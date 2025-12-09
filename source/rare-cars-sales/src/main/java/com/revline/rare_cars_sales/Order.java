@@ -34,23 +34,12 @@ public class Order {
     @Column(nullable = false)
     private BigDecimal total;
 
-    @Column(nullable = false)
-    private String shippingAddressStreet;
-
-    @Column(nullable = false)
-    private String shippingAddressCity;
-
-    @Column(nullable = false)
-    private String shippingAddressState;
-
-    @Column(nullable = false)
-    private String shippingAddressZip;
-
-    @Column(nullable = false)
-    private String paymentCardLastFour;
-
-    @Column(nullable = false)
-    private String phone;
+    @Column(nullable = false) private String shippingAddressStreet;
+    @Column(nullable = false) private String shippingAddressCity;
+    @Column(nullable = false) private String shippingAddressState;
+    @Column(nullable = false) private String shippingAddressZip;
+    @Column(nullable = false) private String paymentCardLastFour;
+    @Column(nullable = false) private String phone;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems;
@@ -71,111 +60,25 @@ public class Order {
         this.phone = phone;
     }
 
-    public Long getOrderID() {
-        return orderID;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public LocalDateTime getOrderDate() {
-        return orderDate;
-    }
-
-    public void setOrderDate(LocalDateTime orderDate) {
-        this.orderDate = orderDate;
-    }
-
-    public BigDecimal getSubTotal() {
-        return subTotal;
-    }
-
-    public void setSubTotal(BigDecimal subTotal) {
-        this.subTotal = subTotal;
-    }
-
-    public BigDecimal getTax() {
-        return tax;
-    }
-
-    public void setTax(BigDecimal tax) {
-        this.tax = tax;
-    }
-
-    public BigDecimal getShippingFee() {
-        return shippingFee;
-    }
-
-    public void setShippingFee(BigDecimal shippingFee) {
-        this.shippingFee = shippingFee;
-    }
-
-    public BigDecimal getTotal() {
-        return total;
-    }
-
-    public void setTotal(BigDecimal total) {
-        this.total = total;
-    }
-
-    public String getShippingAddressStreet() {
-        return shippingAddressStreet;
-    }
-
-    public void setShippingAddressStreet(String shippingAddressStreet) {
-        this.shippingAddressStreet = shippingAddressStreet;
-    }
-
-    public String getShippingAddressCity() {
-        return shippingAddressCity;
-    }
-
-    public void setShippingAddressCity(String shippingAddressCity) {
-        this.shippingAddressCity = shippingAddressCity;
-    }
-
-    public String getShippingAddressState() {
-        return shippingAddressState;
-    }
-
-    public void setShippingAddressState(String shippingAddressState) {
-        this.shippingAddressState = shippingAddressState;
-    }
-
-    public String getShippingAddressZip() {
-        return shippingAddressZip;
-    }
-
-    public void setShippingAddressZip(String shippingAddressZip) {
-        this.shippingAddressZip = shippingAddressZip;
-    }
-
-    public String getPaymentCardLastFour() {
-        return paymentCardLastFour;
-    }
-
-    public void setPaymentCardLastFour(String paymentCardLastFour) {
-        this.paymentCardLastFour = paymentCardLastFour;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public List<OrderItem> getOrderItems() {
-        return orderItems;
-    }
-
-    public void setOrderItems(List<OrderItem> orderItems) {
-        this.orderItems = orderItems;
-    }
+    public Long getOrderID() { return orderID; }
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
+    public LocalDateTime getOrderDate() { return orderDate; }
+    public void setOrderDate(LocalDateTime orderDate) { this.orderDate = orderDate; }
+    public BigDecimal getSubTotal() { return subTotal; }
+    public void setSubTotal(BigDecimal subTotal) { this.subTotal = subTotal; }
+    public BigDecimal getTax() { return tax; }
+    public void setTax(BigDecimal tax) { this.tax = tax; }
+    public BigDecimal getShippingFee() { return shippingFee; }
+    public void setShippingFee(BigDecimal shippingFee) { this.shippingFee = shippingFee; }
+    public BigDecimal getTotal() { return total; }
+    public void setTotal(BigDecimal total) { this.total = total; }
+    public List<OrderItem> getOrderItems() { return orderItems; }
+    public void setOrderItems(List<OrderItem> orderItems) { this.orderItems = orderItems; }
+    public String getShippingAddressStreet() { return shippingAddressStreet; }
+    public String getShippingAddressCity() { return shippingAddressCity; }
+    public String getShippingAddressState() { return shippingAddressState; }
+    public String getShippingAddressZip() { return shippingAddressZip; }
+    public String getPaymentCardLastFour() { return paymentCardLastFour; }
+    public String getPhone() { return phone; }
 }

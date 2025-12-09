@@ -1,6 +1,7 @@
 package com.revline.rare_cars_sales;
 
 import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -28,11 +29,10 @@ public class User {
     private boolean isAdministrator = false;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private java.util.List<Order> orders;
+    private List<Order> orders;
 
     protected User() {}
 
-    //constructor
     public User(String username, String password, String firstName, String lastName, String email) {
         this.username = username;
         this.password = password;
@@ -41,66 +41,19 @@ public class User {
         this.email = email;
     }
 
-    //Getters
-    public Long getUserID() {
-        return userID;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public boolean isAdministrator() {
-        return isAdministrator;
-    }
-
-    //Setters
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setAdministrator(boolean administrator) {
-        isAdministrator = administrator;
-    }
-
-    public java.util.List<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(java.util.List<Order> orders) {
-        this.orders = orders;
-    }
+    public Long getUserID() { return userID; }
+    public String getUsername() { return username; }
+    public void setUsername(String username) { this.username = username; }
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
+    public String getFirstName() { return firstName; }
+    public void setFirstName(String firstName) { this.firstName = firstName; }
+    public String getLastName() { return lastName; }
+    public void setLastName(String lastName) { this.lastName = lastName; }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+    public boolean isAdministrator() { return isAdministrator; }
+    public void setAdministrator(boolean administrator) { isAdministrator = administrator; }
+    public List<Order> getOrders() { return orders; }
+    public void setOrders(List<Order> orders) { this.orders = orders; }
 }

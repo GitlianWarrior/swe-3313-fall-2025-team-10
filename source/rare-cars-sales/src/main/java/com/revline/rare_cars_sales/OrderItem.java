@@ -3,8 +3,9 @@ package com.revline.rare_cars_sales;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "orderItems")
+@Table(name = "order_items")
 public class OrderItem {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long orderItemID;
@@ -24,23 +25,9 @@ public class OrderItem {
         this.order = order;
     }
 
-    public Long getOrderItemID() {
-        return orderItemID;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
-    public Car getCar() {
-        return car;
-    }
-
-    public void setCar(Car car) {
-        this.car = car;
-    }
+    public Long getOrderItemID() { return orderItemID; }
+    public Order getOrder() { return order; }
+    public void setOrder(Order order) { this.order = order; }
+    public Car getCar() { return car; }
+    public void setCar(Car car) { this.car = car; }
 }
