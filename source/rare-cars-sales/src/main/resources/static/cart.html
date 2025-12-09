@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart - Revline</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">REV<span>LINE</span></div>
+    <a href="index.html" class="btn" style="color: white; border: 1px solid white;">Back to Shop</a>
+</header>
+
+<div class="form-container" style="max-width: 800px; margin-top: 20px;">
+    <h2 style="border-bottom: 2px solid #D80000; padding-bottom: 10px;">Shopping Cart</h2>
+
+    <div id="cartItems">
+        <p>Loading cart...</p>
+    </div>
+
+    <div style="text-align: right; margin-top: 20px;">
+        <h3>Subtotal: <span id="cartSubtotal" style="color: #2ecc71;">$0.00</span></h3>
+        <button id="checkoutBtn" class="btn btn-red" onclick="showCheckout()" style="display: none;">Proceed to Checkout</button>
+    </div>
+</div>
+
+<div id="checkoutSection" class="form-container" style="max-width: 800px; display: none; background: #f9f9f9;">
+    <h2>Checkout Details</h2>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <div>
+            <h4>Shipping Address</h4>
+            <input type="text" id="street" placeholder="Street Address">
+            <input type="text" id="city" placeholder="City">
+            <input type="text" id="state" placeholder="State">
+            <input type="text" id="zip" placeholder="Zip Code">
+            <input type="text" id="phone" placeholder="Phone Number">
+
+            <label>Shipping Speed:</label>
+            <select id="shippingSpeed" onchange="updateTotal()">
+                <option value="Ground">Ground (Free)</option>
+                <option value="3-Day">3-Day ($19.00)</option>
+                <option value="Overnight">Overnight ($29.00)</option>
+            </select>
+        </div>
+
+        <div>
+            <h4>Payment Method</h4>
+            <input type="text" placeholder="Credit Card Number">
+            <div style="display: flex; gap: 10px;">
+                <input type="text" placeholder="MM/YY">
+                <input type="text" placeholder="CVV">
+            </div>
+            <p style="font-size: 0.8em; color: #666;">* We only save the last 4 digits.</p>
+            <input type="text" id="cardLast4" placeholder="Last 4 Digits (Required)">
+        </div>
+    </div>
+
+    <div style="background: #333; color: white; padding: 20px; border-radius: 8px; margin-top: 20px;">
+        <h3>Order Summary</h3>
+        <p>Subtotal: <span id="finalSub">$0.00</span></p>
+        <p>Tax (6%): <span id="finalTax">$0.00</span></p>
+        <p>Shipping: <span id="finalShip">$0.00</span></p>
+        <hr>
+        <h2 style="color: #D80000;">Total: <span id="finalTotal">$0.00</span></h2>
+    </div>
+
+    <button class="btn btn-red" style="width: 100%; margin-top: 20px; font-size: 1.2em;" onclick="submitOrder()">Confirm Order</button>
+</div>
+
+<script>
+    let cartTotal = 0;
+
+    window.onload = loadCart;
+
+    async function loadCart() {
+        const res = await fetch('/api/cart');
+        const cart = await res.json();
+
+        const container = document.getElementById('cartItems');
+        container.innerHTML = '';
+        cartTotal = 0;
+
+        if (cart.length === 0) {
+            container.innerHTML = '<p>Your cart is empty.</p>';
+            document.getElementById('checkoutBtn').style.display = 'none';
+            return;
+        }
+
+        cart.forEach(car => {
+            cartTotal += car.price;
+            const item = document.createElement('div');
+            item.style.cssText = "display: flex; justify-content: space-between; padding: 10px; border-bottom: 1px solid #eee; align-items: center;";
+            item.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <img src="${car.imagePath}" style="width: 80px; height: 50px; object-fit: cover; border-radius: 4px;">
+                    <strong>${car.year} ${car.make} ${car.model}</strong>
+                </div>
+                <div>
+                    <span style="font-weight: bold; margin-right: 15px;">$${car.price.toLocaleString()}</span>
+                    <button class="btn" onclick="removeItem(${car.carID})" style="background: #ccc; padding: 5px 10px;">Remove</button>
+                </div>
+            `;
+            container.appendChild(item);
+        });
+
+        document.getElementById('cartSubtotal').innerText = '$' + cartTotal.toLocaleString();
+        document.getElementById('checkoutBtn').style.display = 'inline-block';
+        updateTotal();
+    }
+
+    async function removeItem(id) {
+        await fetch(`/api/cart/remove/${id}`, { method: 'POST' });
+        loadCart(); // Refresh
+    }
+
+    function showCheckout() {
+        document.getElementById('checkoutSection').style.display = 'block';
+        document.getElementById('checkoutBtn').style.display = 'none'; // Hide proceed button
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function updateTotal() {
+        const speed = document.getElementById('shippingSpeed').value;
+        let shipping = 0;
+        if (speed === 'Overnight') shipping = 29;
+        if (speed === '3-Day') shipping = 19;
+
+        const tax = cartTotal * 0.06;
+        const total = cartTotal + tax + shipping;
+
+        document.getElementById('finalSub').innerText = '$' + cartTotal.toLocaleString(undefined, {minimumFractionDigits: 2});
+        document.getElementById('finalTax').innerText = '$' + tax.toLocaleString(undefined, {minimumFractionDigits: 2});
+        document.getElementById('finalShip').innerText = '$' + shipping.toLocaleString(undefined, {minimumFractionDigits: 2});
+        document.getElementById('finalTotal').innerText = '$' + total.toLocaleString(undefined, {minimumFractionDigits: 2});
+    }
+
+    async function submitOrder() {
+        const orderData = {
+            street: document.getElementById('street').value,
+            city: document.getElementById('city').value,
+            state: document.getElementById('state').value,
+            zip: document.getElementById('zip').value,
+            phone: document.getElementById('phone').value,
+            cardLastFour: document.getElementById('cardLast4').value,
+            shippingSpeed: document.getElementById('shippingSpeed').value
+        };
+
+        // Basic Validation
+        if (!orderData.street || !orderData.cardLastFour) {
+            alert("Please fill in shipping address and card info.");
+            return;
+        }
+
+        const res = await fetch('/api/checkout', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(orderData)
+        });
+
+        if (res.ok) {
+            const receipt = await res.json();
+            alert(`Order Success! Order ID: ${receipt.orderID}\nCheck your email for the receipt.`);
+            window.location.href = 'index.html';
+        } else {
+            alert('Order Failed: ' + await res.text());
+        }
+    }
+</script>
+</body>
+</html>

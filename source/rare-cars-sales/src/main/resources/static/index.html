@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inventory - Revline</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">REV<span>LINE</span></div>
+    <div style="display: flex; gap: 15px;">
+        <input type="text" id="searchBox" placeholder="Search..." style="padding: 5px; margin: 0;">
+        <button class="btn btn-red" onclick="search()">Search</button>
+    </div>
+    <div>
+        <a href="cart.html" class="btn btn-red">Cart</a>
+        <a href="admin.html" id="adminBtn" class="btn" style="background: #333; color: white; display: none;">Admin</a>
+        <button onclick="logout()" class="btn" style="background: transparent; color: white; border: 1px solid white;">Logout</button>
+    </div>
+</header>
+
+<div style="background-color: #111; padding: 40px; text-align: center; color: white;">
+    <h2>Current Inventory</h2>
+</div>
+
+<div id="carGrid" class="inventory-grid">
+</div>
+
+<script>
+    // On Load: Check login and fetch cars
+    window.onload = async () => {
+        const userReq = await fetch('/api/auth/me');
+        if (!userReq.ok) window.location.href = 'login.html'; // Force Login
+
+        const user = await userReq.json();
+        if (user.administrator) document.getElementById('adminBtn').style.display = 'inline-block';
+
+        loadCars();
+    };
+
+    async function loadCars(query = '') {
+        const url = query ? `/api/cars?search=${query}` : '/api/cars';
+        const response = await fetch(url);
+        const cars = await response.json();
+
+        const grid = document.getElementById('carGrid');
+        grid.innerHTML = ''; // Clear current
+
+        cars.forEach(car => {
+            const card = document.createElement('div');
+            card.className = 'car-card';
+            card.innerHTML = `
+                <img src="${car.imagePath}" alt="${car.model}">
+                <div class="car-info">
+                    <h3>${car.year} ${car.make} ${car.model}</h3>
+                    <p class="price">$${car.price.toLocaleString()}</p>
+                    <p style="color: #666; font-size: 0.9em;">${car.description}</p>
+                    <button class="btn btn-red" style="width: 100%" onclick="addToCart(${car.carID})">Add to Cart</button>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    }
+
+    async function addToCart(id) {
+        const res = await fetch(`/api/cart/add/${id}`, { method: 'POST' });
+        if (res.ok) {
+            alert('Added to cart!');
+        } else {
+            alert('Error adding to cart');
+        }
+    }
+
+    function search() {
+        const query = document.getElementById('searchBox').value;
+        loadCars(query);
+    }
+
+    async function logout() {
+        await fetch('/api/auth/logout', { method: 'POST' });
+        window.location.href = 'login.html';
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard - Revline</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header style="background: #222;">
+    <div class="logo">REV<span>ADMIN</span></div>
+    <a href="index.html" class="btn" style="color: white; border: 1px solid white;">Back to Shop</a>
+</header>
+
+<div class="form-container" style="max-width: 1000px; margin-top: 40px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h2>Sales Report</h2>
+        <button class="btn btn-red" onclick="exportToCSV()">Export to CSV</button>
+    </div>
+
+    <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+        <thead>
+        <tr style="background: #f4f4f4; text-align: left;">
+            <th style="padding: 10px;">ID</th>
+            <th style="padding: 10px;">Date</th>
+            <th style="padding: 10px;">Customer</th>
+            <th style="padding: 10px;">Items</th>
+            <th style="padding: 10px;">Total</th>
+        </tr>
+        </thead>
+        <tbody id="salesTable">
+        </tbody>
+    </table>
+</div>
+
+<script>
+    let salesData = [];
+
+    window.onload = async () => {
+        const res = await fetch('/api/admin/sales');
+
+        if (res.status === 403) {
+            alert("Access Denied: Admins Only");
+            window.location.href = 'index.html';
+            return;
+        }
+
+        salesData = await res.json();
+        renderTable(salesData);
+    };
+
+    function renderTable(orders) {
+        const tbody = document.getElementById('salesTable');
+        tbody.innerHTML = '';
+
+        orders.forEach(order => {
+            // Format Date
+            const date = new Date(order.orderDate).toLocaleDateString();
+
+            // Format Items (e.g. "Ferrari, Bugatti")
+            const itemNames = order.orderItems.map(item =>
+                `${item.car.year} ${item.car.make} ${item.car.model}`
+            ).join(', ');
+
+            const row = document.createElement('tr');
+            row.style.borderBottom = "1px solid #eee";
+            row.innerHTML = `
+                <td style="padding: 10px;">#${order.orderID}</td>
+                <td style="padding: 10px;">${date}</td>
+                <td style="padding: 10px;">${order.user.firstName} ${order.user.lastName}</td>
+                <td style="padding: 10px; color: #555;">${itemNames}</td>
+                <td style="padding: 10px; font-weight: bold;">$${order.total.toLocaleString(undefined, {minimumFractionDigits: 2})}</td>
+            `;
+            tbody.appendChild(row);
+        });
+    }
+
+    function exportToCSV() {
+        if (salesData.length === 0) {
+            alert("No data to export");
+            return;
+        }
+
+        let csv = 'Order ID,Date,Customer,Items,Total,Shipping Address\n';
+
+        salesData.forEach(order => {
+            const itemNames = order.orderItems.map(i => `${i.car.make} ${i.car.model}`).join(' | ');
+            const address = `"${order.shippingAddressStreet}, ${order.shippingAddressCity}"`;
+
+            csv += `${order.orderID},${order.orderDate},${order.user.username},"${itemNames}",${order.total},${address}\n`;
+        });
+
+        const blob = new Blob([csv], { type: 'text/csv' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'sales_report.csv';
+        a.click();
+    }
+</script>
+</body>
+</html>

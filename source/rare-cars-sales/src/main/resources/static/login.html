@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - Revline</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body style="background-color: #000; color: white;">
+
+<div class="form-container" style="background-color: #111; color: white; border: 1px solid #333;">
+    <h2 style="text-align: center; color: #D80000;">REVLINE</h2>
+    <p style="text-align: center;">Welcome back</p>
+
+    <div id="loginSection">
+        <input type="text" id="loginUser" placeholder="Username">
+        <input type="password" id="loginPass" placeholder="Password">
+        <button class="btn btn-red" style="width: 100%;" onclick="login()">Log In</button>
+        <p style="text-align: center; margin-top: 15px; font-size: 0.9em;">
+            New here? <a href="#" onclick="toggleForms()" style="color: #D80000;">Create an account</a>
+        </p>
+    </div>
+
+    <div id="registerSection" style="display: none;">
+        <input type="text" id="regUser" placeholder="Username">
+        <input type="password" id="regPass" placeholder="Password (Min 6 chars)">
+        <input type="text" id="regFirst" placeholder="First Name">
+        <input type="text" id="regLast" placeholder="Last Name">
+        <input type="text" id="regEmail" placeholder="Email">
+        <button class="btn btn-red" style="width: 100%;" onclick="register()">Sign Up</button>
+        <p style="text-align: center; margin-top: 15px; font-size: 0.9em;">
+            <a href="#" onclick="toggleForms()" style="color: #D80000;">Back to Login</a>
+        </p>
+    </div>
+</div>
+
+<script>
+    function toggleForms() {
+        const login = document.getElementById('loginSection');
+        const reg = document.getElementById('registerSection');
+        if (login.style.display === 'none') {
+            login.style.display = 'block'; reg.style.display = 'none';
+        } else {
+            login.style.display = 'none'; reg.style.display = 'block';
+        }
+    }
+
+    async function login() {
+        const username = document.getElementById('loginUser').value;
+        const password = document.getElementById('loginPass').value;
+
+        const response = await fetch('/api/auth/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, password })
+        });
+
+        if (response.ok) {
+            window.location.href = 'index.html'; // Go to store
+        } else {
+            alert('Login Failed: ' + await response.text());
+        }
+    }
+
+    async function register() {
+        const user = {
+            username: document.getElementById('regUser').value,
+            password: document.getElementById('regPass').value,
+            firstName: document.getElementById('regFirst').value,
+            lastName: document.getElementById('regLast').value,
+            email: document.getElementById('regEmail').value
+        };
+
+        const response = await fetch('/api/auth/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(user)
+        });
+
+        if (response.ok) {
+            alert("Account created! Please log in.");
+            toggleForms();
+        } else {
+            alert('Error: ' + await response.text());
+        }
+    }
+</script>
+</body>
+</html>
