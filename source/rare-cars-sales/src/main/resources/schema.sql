@@ -1,8 +1,11 @@
 CREATE TABLE IF NOT EXISTS users (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    username TEXT NOT NULL UNIQUE,
-    password TEXT NOT NULL,
-    role TEXT NOT NULL
+    userID           INTEGER PRIMARY KEY AUTOINCREMENT,
+    username         TEXT    NOT NULL UNIQUE,
+    password         TEXT    NOT NULL,
+    firstName        TEXT    NOT NULL,
+    lastName         TEXT    NOT NULL,
+    email            TEXT    NOT NULL,
+    isAdministrator  INTEGER NOT NULL DEFAULT 0
 );
 
 CREATE TABLE IF NOT EXISTS inventory (

@@ -1,65 +1,89 @@
 package com.revline.rare_cars_sales;
 
 import jakarta.persistence.*;
-import java.math.BigDecimal;
 
 @Entity
-@Table(name = "cars")
+@Table(name = "inventory")
 public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long carID;
+    private Long id;
 
     @Column(nullable = false)
-    private String make;
+    private String name;
 
     @Column(nullable = false)
-    private String model;
+    private Double price;
 
-    @Column(nullable = false)
-    private int year;
+    @Column
+    private String image;
 
-    @Column(nullable = false, columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT")
     private String description;
 
-    @Column(nullable = false, precision = 10, scale = 2)
-    private BigDecimal price;
-
     @Column(nullable = false)
-    private String imagePath;
+    private String status = "Available";
 
-    @Column(nullable = false)
-    private boolean isSold = false;
+    // Constructors
 
-    protected Car() {}
+    protected Car() {
 
-    public Car(String make, String model, int year, String description, BigDecimal price, String imagePath) {
-        this.make = make;
-        this.model = model;
-        this.year = year;
-        this.description = description;
-        this.price = price;
-        this.imagePath = imagePath;
-        this.isSold = false;
     }
 
-    public Long getCarID() { return carID; }
-    public String getMake() { return make; }
-    public void setMake(String make) { this.make = make; }
-    public String getModel() { return model; }
-    public void setModel(String model) { this.model = model; }
-    public int getYear() { return year; }
-    public void setYear(int year) { this.year = year; }
-    public String getDescription() { return description; }
-    public void setDescription(String description) { this.description = description; }
+    public Car(String name, Double price, String image, String description, String status) {
+        this.name = name;
+        this.price = price;
+        this.image = image;
+        this.description = description;
+        this.status = status;
+    }
 
-    public BigDecimal getPrice() { return price; }
-    public void setPrice(BigDecimal price) { this.price = price; }
+    // Getters
 
-    public String getImagePath() { return imagePath; }
-    public void setImagePath(String imagePath) { this.imagePath = imagePath; }
+    public Long getId() {
+        return id;
+    }
 
-    public boolean isSold() { return isSold; }
-    public void setSold(boolean sold) { isSold = sold; }
+    public String getName() {
+        return name;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    // Setters
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

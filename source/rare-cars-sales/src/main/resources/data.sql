@@ -1,5 +1,6 @@
-INSERT INTO users (username, password, role)
-VALUES ('admin', 'admin', 'ADMIN');
+INSERT INTO users (username, password, firstName, lastName, email, isAdministrator)
+VALUES ('admin', 'admin', 'admin', 'admin', 'revlineadmin@gmail.com', 1);
+
 
 INSERT INTO inventory (name, price, image, description, status) VALUES
 ('Porsche 911',              98750,   NULL, 'Luxurysport',  'Available'),
