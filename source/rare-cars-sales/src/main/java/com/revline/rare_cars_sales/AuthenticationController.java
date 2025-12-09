@@ -1,74 +1,101 @@
 package com.revline.rare_cars_sales;
 
 import jakarta.servlet.http.HttpSession;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import java.util.Optional;
 
-@RestController
-@RequestMapping("/api/auth")
+@Controller
 public class AuthenticationController {
 
     private final UserRepository userRepository;
 
+    @Autowired
     public AuthenticationController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
-    //REGISTER
-    @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody User newUser) {
-        //Check if username already exists
-        if (userRepository.findByUsername(newUser.getUsername()).isPresent()) {
-            return ResponseEntity.badRequest().body("Username already taken");
-        }
-
-        // Enforce 6-character password minimum
-        if (newUser.getPassword() == null || newUser.getPassword().length() < 6) {
-            return ResponseEntity.badRequest().body("Password must be at least 6 characters");
-        }
-
-        //Save the new user
-        User savedUser = userRepository.save(newUser);
-        return ResponseEntity.ok(savedUser);
+    @GetMapping("/")
+    public String root() {
+        return "redirect:/login";
     }
 
     // LOGIN
+    @GetMapping("/login")
+    public String showLogin() {
+        return "login";
+    }
+
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest, HttpSession session) {
-        //Find user by username
-        Optional<User> userOptional = userRepository.findByUsername(loginRequest.username());
+    public String doLogin(@RequestParam String username,
+                          @RequestParam String password,
+                          HttpSession session) {
 
-        //Check if user exists and password matches
-        if (userOptional.isPresent() && userOptional.get().getPassword().equals(loginRequest.password())) {
-            User user = userOptional.get();
+        Optional<User> optionalUser = userRepository.findByUsername(username);
 
-            //Save user to Session
-            session.setAttribute("user", user);
-
-            return ResponseEntity.ok(user);
+        if (optionalUser.isEmpty()) {
+            return "redirect:/login?error";
         }
 
-        return ResponseEntity.status(401).body("Invalid Username or Password");
+        User user = optionalUser.get();
+
+        if (!user.getPassword().equals(password)) {
+            return "redirect:/login?error";
+        }
+
+        session.setAttribute("userId", user.getUserID());
+        session.setAttribute("username", user.getUsername());
+        session.setAttribute("isAdmin", user.isAdministrator());
+
+        if (user.isAdministrator()) {
+            return "redirect:/sales-report";
+        } else {
+            return "redirect:/shop";
+        }
     }
 
     // LOGOUT
-    @PostMapping("/logout")
-    public ResponseEntity<?> logout(HttpSession session) {
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
         session.invalidate();
-        return ResponseEntity.ok("Logged out successfully");
+        return "redirect:/login?logout";
     }
 
-    // CHECK SESSION
-    @GetMapping("/me")
-    public ResponseEntity<?> getCurrentUser(HttpSession session) {
-        User currentUser = (User) session.getAttribute("user");
-        if (currentUser == null) {
-            return ResponseEntity.status(401).body("Not logged in");
+    // REGISTER
+    @GetMapping("/register")
+    public String showRegister() {
+        return "register";
+    }
+
+    @PostMapping("/register")
+    public String doRegister(@RequestParam String username,
+                             @RequestParam String password,
+                             @RequestParam String confirmPassword,
+                             @RequestParam String firstName,
+                             @RequestParam String lastName,
+                             @RequestParam String email,
+                             Model model) {
+
+        if (!password.equals(confirmPassword)) {
+            model.addAttribute("error", "Passwords do not match.");
+            return "register";
         }
-        return ResponseEntity.ok(currentUser);
-    }
 
-    // Simple DTO for Login
-    public record LoginRequest(String username, String password) {}
+        if (userRepository.findByUsername(username).isPresent()) {
+            model.addAttribute("error", "Username already taken.");
+            return "register";
+        }
+
+        User user = new User(username, password, firstName, lastName, email);
+        user.setAdministrator(false);
+
+        userRepository.save(user);
+
+        return "redirect:/login?created";
+    }
 }
