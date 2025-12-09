@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Payment</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header style="background-color: #D80000;">
+  <div style="display: flex; align-items: center; gap: 20px;">
+    <div class="logo">REV<span style="color: black;">LINE</span></div>
+    <a href="index.html" class="btn" style="background: #D80000; color: white; border: 2px solid white;">Shop</a>
+  </div>
+  <a href="cart.html">
+    <img src="https://img.icons8.com/ios-filled/50/ffffff/shopping-cart.png" width="30" height="30">
+  </a>
+</header>
+
+<div class="checkout-box">
+  <h2>Payment Details</h2>
+
+  <form onsubmit="placeOrder(event)">
+    <div style="display: flex; gap: 20px;">
+      <div class="form-section">
+        <h4>Shipping Address</h4>
+        <input type="text" id="street" placeholder="Street Address" required>
+        <input type="text" id="city" placeholder="City" required>
+        <input type="text" id="state" placeholder="State" required>
+        <input type="text" id="zip" placeholder="Zip Code" required>
+        <input type="text" id="phone" placeholder="Phone Number">
+
+        <label style="display: block; margin-top: 10px;">Shipping Speed:</label>
+        <select id="shippingSpeed" onchange="updateTotals()">
+          <option value="Ground">Ground (Free)</option>
+          <option value="3-Day">3-Day ($19.00)</option>
+          <option value="Overnight">Overnight ($29.00)</option>
+        </select>
+      </div>
+
+      <div class="form-section">
+        <h4>Payment Method</h4>
+        <input type="text" placeholder="Credit Card Number">
+        <div style="display: flex; gap: 10px;">
+          <input type="text" placeholder="MM/YY" style="flex: 1;">
+          <input type="text" placeholder="CVV" style="flex: 1;">
+        </div>
+        <p style="font-size: 12px; color: #666;">* We only save the last 4 digits.</p>
+        <input type="text" id="cardLast4" placeholder="Last 4 Digits (Required)" required>
+      </div>
+    </div>
+
+    <div class="summary-totals">
+      <p>Subtotal: $<span id="show-sub">0.00</span></p>
+      <p>Tax (6%): $<span id="show-tax">0.00</span></p>
+      <p>Shipping: $<span id="show-ship">0.00</span></p>
+      <hr>
+      <h3 style="color: #D80000;">Total: $<span id="show-total">0.00</span></h3>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; margin-top: 20px;">
+      <a href="cart.html" class="btn" style="background: #666; color: white; padding: 12px 35px;">Back</a>
+      <button type="submit" class="btn btn-red" style="padding: 12px 35px; font-size: 16px;">Continue to Summary</button>
+    </div>
+  </form>
+</div>
+
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const subtotal = parseFloat(urlParams.get('subtotal')) || 0;
+
+  window.onload = function() {
+    document.getElementById('show-sub').innerText = subtotal.toFixed(2);
+    updateTotals();
+  }
+
+  function updateTotals() {
+    let shipCost = 0;
+    let speed = document.getElementById('shippingSpeed').value;
+
+    if(speed === 'Overnight') shipCost = 29;
+    if(speed === '3-Day') shipCost = 19;
+
+    let tax = subtotal * 0.06;
+    let total = subtotal + tax + shipCost;
+
+    document.getElementById('show-tax').innerText = tax.toFixed(2);
+    document.getElementById('show-ship').innerText = shipCost.toFixed(2);
+    document.getElementById('show-total').innerText = total.toFixed(2);
+  }
+
+  function placeOrder(e) {
+    e.preventDefault();
+
+    let orderInfo = {
+      street: document.getElementById('street').value,
+      city: document.getElementById('city').value,
+      state: document.getElementById('state').value,
+      zip: document.getElementById('zip').value,
+      phone: document.getElementById('phone').value,
+      cardLastFour: document.getElementById('cardLast4').value,
+      shippingSpeed: document.getElementById('shippingSpeed').value
+    };
+
+    fetch('/api/checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(orderInfo)
+    })
+            .then(res => {
+              if(res.ok) return res.json();
+              else throw new Error("Order failed");
+            })
+            .then(receipt => {
+              let finalTotal = document.getElementById('show-total').innerText;
+              window.location.href = "ordersummary.html?id=" + receipt.orderID + "&paid=" + finalTotal;
+            })
+            .catch(err => {
+              alert("Error: " + err.message);
+            });
+  }
+</script>
+
+</body>
+</html>

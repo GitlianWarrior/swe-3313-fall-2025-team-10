@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Order Complete</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header style="background-color: #D80000;">
+  <div style="display: flex; align-items: center; gap: 20px;">
+    <div class="logo">REV<span style="color: black;">LINE</span></div>
+    <a href="index.html" class="btn" style="background: #D80000; color: white; border: 2px solid white;">Shop</a>
+  </div>
+  <a href="cart.html">
+    <img src="https://img.icons8.com/ios-filled/50/ffffff/shopping-cart.png" width="30" height="30">
+  </a>
+</header>
+
+<div class="checkout-box" style="text-align: center;">
+  <h2>Order Complete!</h2>
+
+  <div class="success-msg">
+    <h1 style="color: #2ecc71;">✓ Thank You!</h1>
+    <p>Your order has been placed successfully.</p>
+
+    <div class="order-details">
+      <h3>Order #<span id="order-num">---</span></h3>
+      <p style="font-size: 20px;">Total Paid: <strong>$<span id="total-paid">0.00</span></strong></p>
+    </div>
+
+    <p>A confirmation email has been sent.</p>
+    <br>
+    <a href="index.html" class="btn btn-red" style="padding: 12px 30px; font-size: 16px;">Continue Shopping</a>
+  </div>
+</div>
+
+<script>
+  window.onload = function() {
+    const params = new URLSearchParams(window.location.search);
+
+    let orderId = params.get('id');
+    let amountPaid = params.get('paid');
+
+    if(orderId) {
+      document.getElementById('order-num').innerText = orderId;
+    }
+    if(amountPaid) {
+      document.getElementById('total-paid').innerText = amountPaid;
+    }
+  }
+</script>
+
+</body>
+</html>

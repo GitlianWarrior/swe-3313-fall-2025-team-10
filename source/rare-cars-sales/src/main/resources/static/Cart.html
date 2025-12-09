@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Cart</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<header style="background-color: #D80000;">
+    <div style="display: flex; align-items: center; gap: 20px;">
+        <div class="logo">REV<span style="color: black;">LINE</span></div>
+        <a href="index.html" class="btn" style="background: #D80000; color: white; border: 2px solid white;">Shop</a>
+    </div>
+    <a href="cart.html">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/shopping-cart.png" width="30" height="30">
+    </a>
+</header>
+
+<div class="checkout-box">
+    <h2>Checkout</h2>
+
+    <div id="cart-list" class="items-list">
+        <p style="padding: 20px;">Loading...</p>
+    </div>
+
+    <div style="text-align: right; margin-top: 20px;">
+        <div class="subtotal-box">
+            Subtotal: $<span id="subtotal-display">0.00</span>
+        </div>
+    </div>
+
+    <div id="pay-btn-div" style="text-align: right; margin-top: 15px; display: none;">
+        <button class="btn btn-red" onclick="goToPayment()" style="padding: 12px 35px; font-size: 16px;">Pay now</button>
+    </div>
+</div>
+
+<script>
+    let myCart = [];
+    let myTotal = 0;
+
+    window.onload = function() {
+        loadMyCart();
+    }
+
+    function loadMyCart() {
+        fetch('/api/cart')
+            .then(res => res.json())
+            .then(data => {
+                myCart = data;
+                showCart();
+            })
+            .catch(err => console.log("error loading cart", err));
+    }
+
+    function showCart() {
+        let container = document.getElementById('cart-list');
+        container.innerHTML = "";
+        myTotal = 0;
+
+        if(myCart.length === 0) {
+            container.innerHTML = "<p style='padding: 30px; text-align: center; color: #666;'>Your cart is empty.</p>";
+            document.getElementById('pay-btn-div').style.display = 'none';
+            return;
+        }
+
+        for(let i = 0; i < myCart.length; i++) {
+            let car = myCart[i];
+            myTotal += car.price;
+
+            container.innerHTML += `
+                <div class="cart-item">
+                    <button class="remove-btn" onclick="removeFromCart(${car.carID})">🗑</button>
+                    <span style="flex: 1; font-size: 16px;">${car.year} ${car.make} ${car.model}</span>
+                    <img src="${car.imagePath}" alt="${car.model}">
+                    <span style="font-size: 16px; font-weight: bold; min-width: 100px; text-align: right;">$${car.price.toLocaleString(undefined, {minimumFractionDigits: 2})}</span>
+                </div>
+            `;
+        }
+
+        document.getElementById('subtotal-display').innerText = myTotal.toLocaleString(undefined, {minimumFractionDigits: 2});
+        document.getElementById('pay-btn-div').style.display = 'block';
+    }
+
+    function removeFromCart(id) {
+        fetch('/api/cart/remove/' + id, { method: 'POST' })
+            .then(() => loadMyCart());
+    }
+
+    function goToPayment() {
+        window.location.href = "payment.html?subtotal=" + myTotal.toFixed(2);
+    }
+</script>
+
+</body>
+</html>

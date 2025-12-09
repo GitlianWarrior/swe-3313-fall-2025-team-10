@@ -128,5 +128,25 @@ public class MainController {
         return ResponseEntity.ok(orderRepository.findAllByOrderByOrderDateDesc());
     }
 
+    @PostMapping("/admin/reset")
+    public ResponseEntity<?> resetDatabase(HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (user == null || !user.isAdministrator()) {
+            return ResponseEntity.status(403).body("Access Denied: Admins Only");
+        }
+
+        // Clears all the orders
+        orderRepository.deleteAll();
+
+        // Marks all the cards as unsold
+        List<Car> allCars = carRepository.findAll();
+        for (Car car : allCars) {
+            car.setSold(false);
+        }
+        carRepository.saveAll(allCars);
+
+        return ResponseEntity.ok("Database Reset: All cars are available, and orders have been cleared.");
+    }
+
     public record CheckoutRequest(String street, String city, String state, String zip, String cardLastFour, String phone, String shippingSpeed) {}
 }
