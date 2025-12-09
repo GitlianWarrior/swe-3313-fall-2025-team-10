@@ -26,6 +26,7 @@ h1, h2, h3 { margin: 0; }
     cursor: pointer;
     font-weight: bold;
     border-radius: 4px;
+    text-decoration: none;
 }
 
 .btn-red { background-color: #D80000; color: white; }
@@ -61,6 +62,7 @@ h1, h2, h3 { margin: 0; }
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     border-radius: 8px;
 }
+
 input, select {
     width: 100%;
     padding: 10px;
