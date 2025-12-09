@@ -119,6 +119,16 @@ public class MainController {
         return ResponseEntity.ok(newOrder);
     }
 
+    @GetMapping("/order/{orderId}")
+    public ResponseEntity<?> getOrder(@PathVariable Long orderId, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        if (user == null) return ResponseEntity.status(401).body("Please login first");
+
+        return orderRepository.findById(orderId)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
     @GetMapping("/admin/sales")
     public ResponseEntity<?> getSalesReport(HttpSession session) {
         User user = (User) session.getAttribute("user");

@@ -2,8 +2,42 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Order Complete</title>
+  <title>Order Summary</title>
   <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .summary-item {
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      border-bottom: 1px solid #eee;
+      background: white;
+    }
+    .summary-item img {
+      width: 120px;
+      height: 80px;
+      object-fit: cover;
+      margin: 0 30px;
+    }
+    .totals-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+    .totals-box {
+      border: 2px solid white;
+      padding: 15px 20px;
+      font-size: 18px;
+      color: white;
+      flex: 1;
+    }
+    .total-final {
+      border: 2px solid white;
+      padding: 15px 20px;
+      font-size: 18px;
+      background: white;
+      color: black;
+    }
+  </style>
 </head>
 <body>
 
@@ -17,37 +51,87 @@
   </a>
 </header>
 
-<div class="checkout-box" style="text-align: center;">
-  <h2>Order Complete!</h2>
+<div class="checkout-box">
+  <h2 style="font-weight: normal; font-size: 32px; margin-bottom: 20px;">Order Summary</h2>
 
-  <div class="success-msg">
-    <h1 style="color: #2ecc71;">✓ Thank You!</h1>
-    <p>Your order has been placed successfully.</p>
+  <div id="items-list" class="items-list">
+    <p style="padding: 20px; color: #666;">Loading items...</p>
+  </div>
 
-    <div class="order-details">
-      <h3>Order #<span id="order-num">---</span></h3>
-      <p style="font-size: 20px;">Total Paid: <strong>$<span id="total-paid">0.00</span></strong></p>
-    </div>
+  <div class="totals-row">
+    <div class="totals-box">Subtotal: $<span id="subtotal">0.00</span></div>
+    <div class="totals-box">Tax: $<span id="tax">0.00</span></div>
+    <div class="totals-box">Shipping: $<span id="shipping">0.00</span></div>
+  </div>
 
-    <p>A confirmation email has been sent.</p>
-    <br>
-    <a href="index.html" class="btn btn-red" style="padding: 12px 30px; font-size: 16px;">Continue Shopping</a>
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;">
+    <div class="total-final">Total: $<span id="total">0.00</span></div>
+    <button class="btn btn-red" onclick="completeOrder()" style="padding: 18px 40px; font-size: 18px;">Complete Order</button>
   </div>
 </div>
 
 <script>
+  var orderId = null;
+  var orderData = null;
+
   window.onload = function() {
-    const params = new URLSearchParams(window.location.search);
+    var params = new URLSearchParams(window.location.search);
+    orderId = params.get('id');
 
-    let orderId = params.get('id');
-    let amountPaid = params.get('paid');
+    if(!orderId) {
+      document.getElementById('items-list').innerHTML = '<p style="padding: 20px; text-align: center; color: red;">No order ID provided</p>';
+      return;
+    }
 
-    if(orderId) {
-      document.getElementById('order-num').innerText = orderId;
+    loadOrder();
+  }
+
+  function loadOrder() {
+    fetch('/api/order/' + orderId)
+            .then(function(res) {
+              if(!res.ok) throw new Error("Order not found");
+              return res.json();
+            })
+            .then(function(data) {
+              console.log("Order data:", data);
+              orderData = data;
+              showOrder();
+            })
+            .catch(function(err) {
+              console.log("Error loading order:", err);
+              document.getElementById('items-list').innerHTML = '<p style="padding: 20px; text-align: center; color: red;">Error loading order: ' + err.message + '</p>';
+            });
+  }
+
+  function showOrder() {
+    var container = document.getElementById('items-list');
+    container.innerHTML = '';
+
+    if(!orderData.orderItems || orderData.orderItems.length == 0) {
+      container.innerHTML = '<p style="padding: 20px; text-align: center;">No items in this order</p>';
+      return;
     }
-    if(amountPaid) {
-      document.getElementById('total-paid').innerText = amountPaid;
+
+    for(var i = 0; i < orderData.orderItems.length; i++) {
+      var item = orderData.orderItems[i];
+      var car = item.car;
+
+      var div = document.createElement('div');
+      div.className = 'summary-item';
+      div.innerHTML = '<span style="flex: 1; font-size: 16px;">' + car.year + ' ' + car.make + ' ' + car.model + '</span>' +
+              '<img src="' + car.imagePath + '" alt="' + car.model + '">' +
+              '<span style="font-size: 16px; min-width: 100px; text-align: right;">$' + car.price.toLocaleString(undefined, {minimumFractionDigits: 2}) + '</span>';
+      container.appendChild(div);
     }
+    document.getElementById('subtotal').innerText = orderData.subTotal.toLocaleString(undefined, {minimumFractionDigits: 2});
+    document.getElementById('tax').innerText = orderData.tax.toLocaleString(undefined, {minimumFractionDigits: 2});
+    document.getElementById('shipping').innerText = orderData.shippingFee.toLocaleString(undefined, {minimumFractionDigits: 2});
+    document.getElementById('total').innerText = orderData.total.toLocaleString(undefined, {minimumFractionDigits: 2});
+  }
+
+  function completeOrder() {
+    var total = document.getElementById('total').innerText;
+    window.location.href = "confirmation.html?id=" + orderId + "&total=" + total;
   }
 </script>
 
