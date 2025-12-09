@@ -48,3 +48,8 @@ In this section, our team composed a high-fidelity interactive user interface mo
 
 This section provides a detailed overview of the technical design for our web-based e-commerce application, including implementation languages, frameworks, data storage, entity relationships, and coding standards. It serves as a blueprint for us to build and maintain the system efficiently.
 * [Technical Design.](./technical-design/README.md)
+
+## Implementation
+
+To access the documents of our team implementing the User Interface and Technical Design for this project click [here.](./implementation/README.md)
+
