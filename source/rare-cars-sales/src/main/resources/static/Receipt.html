@@ -4,57 +4,264 @@
   <meta charset="UTF-8">
   <title>Receipt - Revline</title>
   <link rel="stylesheet" href="css/styles.css">
+
   <style>
-    /* Add your custom styles here */
+    /* Outer black panel */
+    .receipt-wrapper {
+      max-width: 900px;
+      margin: 40px auto;
+      background: #000;
+      border-radius: 10px;
+      padding: 0 0 25px 0;
+      color: white;
+    }
+
+    /* Top row: "Receipt" + Shipping Address */
+    .receipt-header-row {
+      display: flex;
+      align-items: stretch;
+      border-bottom: 2px solid #fff;
+    }
+
+    .receipt-title {
+      font-size: 32px;
+      padding: 15px 25px;
+      border-right: 2px solid #fff;
+      font-weight: 500;
+      flex: 0 0 auto;
+    }
+
+    .receipt-ship {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      padding: 0 20px;
+      background: #111;
+    }
+
+    /* Each line item */
+    .receipt-items-box {
+      background: #fff;
+      margin-top: 0;
+      border-radius: 0;
+      overflow: hidden;
+    }
+
+    .receipt-item-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 40px;
+      border-bottom: 1px solid #eee;
+      color: #333;
+      background: #fff;
+    }
+
+    .receipt-item-row:last-child {
+      border-bottom: none;
+    }
+
+    .receipt-item-name {
+      flex: 1;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    .receipt-item-image {
+      width: 120px;
+      height: 80px;
+      object-fit: cover;
+      margin: 0 40px;
+    }
+
+    .receipt-item-price {
+      min-width: 100px;
+      text-align: right;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    /* Totals rows */
+    .receipt-totals-row {
+      display: flex;
+      margin-top: 0;
+    }
+
+    .receipt-total-box {
+      flex: 1;
+      border-top: 2px solid #fff;
+      border-right: 2px solid #fff;
+      padding: 12px 18px;
+      font-size: 18px;
+    }
+
+    .receipt-total-box:last-child {
+      border-right: none;
+    }
+
+    .receipt-total-label {
+      font-weight: 400;
+    }
+
+    .receipt-total-value {
+      font-weight: 600;
+    }
+
+    .receipt-bottom-row {
+      display: flex;
+    }
   </style>
 </head>
 <body>
 
+<!-- Red header bar (matches other pages) -->
 <header style="background-color: #D80000;">
   <div style="display: flex; align-items: center; gap: 20px;">
     <div class="logo">REV<span style="color: black;">LINE</span></div>
     <a href="index.html" class="btn" style="background: #D80000; color: white; border: 2px solid white;">Shop</a>
   </div>
-  <a href="Cart.html">
-    <img src="https://img.icons8.com/ios-filled/50/ffffff/shopping-cart.png" width="30" height="30" alt="Cart">
+  <a href="cart.html">
+    <img src="https://img.icons8.com/ios-filled/50/ffffff/shopping-cart.png"
+         width="30" height="30" alt="Cart">
   </a>
 </header>
 
-<div class="checkout-box">
-  <h2>Receipt</h2>
-
-  <!-- TODO: Display shipping address -->
-  <p>Shipping Address: <span id="shippingAddress">-</span></p>
-
-  <!-- TODO: Display purchased items -->
-  <div id="items-list">
-    <p>Loading items...</p>
+<div class="receipt-wrapper">
+  <!-- Header row -->
+  <div class="receipt-header-row">
+    <div class="receipt-title">Receipt</div>
+    <div class="receipt-ship">
+      Shipping Address:
+      &nbsp;<span id="shippingAddress">Loading...</span>
+    </div>
   </div>
 
-  <!-- TODO: Display totals -->
-  <p>Subtotal: $<span id="subtotal">0.00</span></p>
-  <p>Tax: $<span id="tax">0.00</span></p>
-  <p>Shipping: $<span id="shipping">0.00</span></p>
-  <p>Total: $<span id="total">0.00</span></p>
+  <!-- Items -->
+  <div id="items-list" class="receipt-items-box">
+    <p style="padding: 25px; text-align: center; color: #666;">Loading items...</p>
+  </div>
 
-  <!-- TODO: Display payment info -->
-  <p>Card Last 4: <span id="cardLast4">----</span></p>
+  <!-- Subtotal / Tax / Shipping -->
+  <div class="receipt-totals-row">
+    <div class="receipt-total-box">
+      <span class="receipt-total-label">Subtotal:</span>
+      &nbsp;<span class="receipt-total-value" id="subtotal">$0.00</span>
+    </div>
+    <div class="receipt-total-box">
+      <span class="receipt-total-label">Tax:</span>
+      &nbsp;<span class="receipt-total-value" id="tax">$0.00</span>
+    </div>
+    <div class="receipt-total-box">
+      <span class="receipt-total-label">Shipping:</span>
+      &nbsp;<span class="receipt-total-value" id="shipping">$0.00</span>
+    </div>
+  </div>
 
-  <a href="index.html" class="btn btn-red" style="margin-top: 20px;">Continue Shopping</a>
+  <!-- Total / Card last 4 -->
+  <div class="receipt-bottom-row">
+    <div class="receipt-total-box" style="flex: 1;">
+      <span class="receipt-total-label">Total:</span>
+      &nbsp;<span class="receipt-total-value" id="total">$0.00</span>
+    </div>
+    <div class="receipt-total-box" style="flex: 1;">
+      <span class="receipt-total-label">Credit Card Last Four Digits:</span>
+      &nbsp;<span class="receipt-total-value" id="cardLast4">----</span>
+    </div>
+  </div>
 </div>
 
 <script>
-  window.onload = function() {
-    var params = new URLSearchParams(window.location.search);
-    var orderId = params.get('id');
+  let orderId = null;
+  let orderData = null;
 
-    if(!orderId) {
-      document.getElementById('items-list').innerHTML = '<p>No order ID provided</p>';
+  function money(n) {
+    if (typeof n !== "number") n = Number(n || 0);
+    return "$" + n.toLocaleString(undefined, {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
+  }
+
+  window.onload = function () {
+    const params = new URLSearchParams(window.location.search);
+    orderId = params.get("id");
+
+    if (!orderId) {
+      document.getElementById("items-list").innerHTML =
+        "<p style='padding: 25px; text-align: center; color: red;'>No order ID provided.</p>";
       return;
     }
 
-    // TODO: Fetch order from API using: fetch('/api/order/' + orderId)
-    // TODO: Display order data (items, totals, shipping address, etc.)
+    loadOrder();
+  };
+
+  function loadOrder() {
+    fetch("/api/order/" + orderId)
+      .then(function (res) {
+        if (!res.ok) throw new Error("Order not found");
+        return res.json();
+      })
+      .then(function (data) {
+        orderData = data;
+        renderReceipt();
+      })
+      .catch(function (err) {
+        console.error("Error loading order:", err);
+        document.getElementById("items-list").innerHTML =
+          "<p style='padding: 25px; text-align: center; color: red;'>Error loading order.</p>";
+      });
+  }
+
+  function renderReceipt() {
+    // ----- Shipping Address -----
+    const addrParts = [];
+    if (orderData.shippingAddressStreet) addrParts.push(orderData.shippingAddressStreet);
+    if (orderData.shippingAddressCity)   addrParts.push(orderData.shippingAddressCity);
+    if (orderData.shippingAddressState)  addrParts.push(orderData.shippingAddressState);
+    if (orderData.shippingAddressZip)    addrParts.push(orderData.shippingAddressZip);
+
+    document.getElementById("shippingAddress").innerText =
+      addrParts.length ? addrParts.join(", ") : "N/A";
+
+    // ----- Items -----
+    const container = document.getElementById("items-list");
+    container.innerHTML = "";
+
+    if (!orderData.orderItems || orderData.orderItems.length === 0) {
+      container.innerHTML = "<p style='padding: 25px; text-align: center;'>No items for this order.</p>";
+    } else {
+      orderData.orderItems.forEach(function (item) {
+        const car = item.car || {};
+        const row = document.createElement("div");
+        row.className = "receipt-item-row";
+
+        row.innerHTML =
+          "<div class='receipt-item-name'>" +
+            (car.year || "") + " " +
+            (car.make || "") + " " +
+            (car.model || "") +
+          "</div>" +
+          "<img class='receipt-item-image' src='" + (car.imagePath || "") +
+          "' alt='" + (car.model || "Car") + "'>" +
+          "<div class='receipt-item-price'>" +
+            money(car.price || item.price || 0) +
+          "</div>";
+
+        container.appendChild(row);
+      });
+    }
+
+    // ----- Totals -----
+    document.getElementById("subtotal").innerText = money(orderData.subTotal || orderData.subtotal || 0);
+    document.getElementById("tax").innerText      = money(orderData.tax || 0);
+    document.getElementById("shipping").innerText = money(orderData.shippingFee || orderData.shipping || 0);
+    document.getElementById("total").innerText    = money(orderData.total || 0);
+
+    // ----- Card last 4 -----
+    document.getElementById("cardLast4").innerText =
+      orderData.paymentCardLastFour || orderData.cardLastFour || "----";
   }
 </script>
 
