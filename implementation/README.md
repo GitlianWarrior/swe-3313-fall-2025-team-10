@@ -95,4 +95,7 @@ if (userRepository.findByUsername("existingUser").isPresent()) {
 }
 ```
 
-Replace the existingUser by the user you want to promote
+Replace the existingUser by the user you want to promote.
+
+## AI Acknowledgement
+We would like to note our team used AI tools to explain information we were unsure about.
