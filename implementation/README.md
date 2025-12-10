@@ -74,3 +74,11 @@ Use the sample information to log into the application.
 - **admin** — Role has full administrator access in addition to user access.
 - **user** — Role only has standard user access.
 
+## How to add cars into the inventory
+To add a new car into the inventory, go to the DataLoader.java file and then type the following code in the run block:
+
+```java
+carRepository.save(new Car(make, model, year, description, price, image path))
+```
+
+Replace the data inside the Car method for the data you actually want to save. (Don't forget to add the image of the car to the images folder before saving the data into the database, and also make sure to delete the line of code before running the app again).
