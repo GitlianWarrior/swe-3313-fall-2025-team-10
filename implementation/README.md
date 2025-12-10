@@ -82,3 +82,17 @@ carRepository.save(new Car(make, model, year, description, price, image path))
 ```
 
 Replace the data inside the Car method for the data you actually want to save. (Don't forget to add the image of the car to the images folder before saving the data into the database, and also make sure to delete the line of code before running the app again).
+
+## How to make someone an admin
+To make someone an admin you just need to write this code into the DataLoader.java file in the run block
+
+```java
+if (userRepository.findByUsername("existingUser").isPresent()) {
+    User user = userRepository.findByUsername("existingUser").get();
+    user.setAdministrator(true);
+    userRepository.save(user);
+    System.out.println("User 'existingUser' promoted to ADMIN.");
+}
+```
+
+Replace the existingUser by the user you want to promote
