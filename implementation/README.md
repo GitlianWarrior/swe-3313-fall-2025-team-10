@@ -23,9 +23,40 @@ The following is required to operate the application from a terminal:
     mvn --version
     ```
 
-
-
-
 ## Database Setup
+The seed will be automatically uploaded in the database once the app runs, as long as the database is empty. No database setup is required.
+
 ## How to Start and Login
+####  **1. Clone the Repository (if needed)**
+
+  ```bash
+git clone https://github.com/GitlianWarrior/swe-3313-fall-2025-team-10.git
+  ```
+
+####  **2. Navigate to Project Directory**
+
+   ```bash
+cd swe-3313-fall-2025-team-10/source/rare-cars-sales
+   ```
+
+#### **3. Build Application**
+
+  ```bash
+   mvn clean install
+  ```
+
+#### **4. Run Command**
+
+   ```bash
+    mvn spring-boot:run
+   ```
+
+#### **5. To View Site**
+
+  ```
+    http://localhost:8080/
+   ```
+
+## Login Information
+
 ## Troubleshooting
