@@ -4,34 +4,103 @@
     <meta charset="UTF-8">
     <title>Inventory - Revline</title>
     <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Specific Overrides for the "Big Box" Layout */
+
+        /* The Big Container */
+        .main-inventory-box {
+            background-color: #1a1a1a; /* Dark Grey Background */
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 40px;
+            border-radius: 12px;
+            min-height: 600px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        /* The Search Bar Area */
+        .search-area {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .search-input {
+            background-color: #444; /* Lighter than cards */
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            width: 50%;
+            border-radius: 30px;
+            font-size: 16px;
+            outline: none;
+            transition: background 0.3s;
+        }
+        .search-input::placeholder { color: #bbb; }
+        .search-input:focus { background-color: #555; }
+
+        /* The Car Cards */
+        .car-card {
+            background-color: #2d2d2d; /* Lighter than the big box */
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.2s;
+            color: white; /* All text white */
+            border: none; /* Remove old borders */
+        }
+        .car-card:hover { transform: translateY(-5px); }
+
+        .car-info h3 { color: white; margin-top: 0; }
+        .car-info p { color: #ccc; } /* Description text slightly dimmed */
+
+        /* The Price Override */
+        .price {
+            color: #2ecc71 !important; /* Force Green */
+            font-size: 1.4em;
+            font-weight: bold;
+        }
+
+        /* Red Button tweaks for dark mode */
+        .btn-red {
+            border-radius: 4px;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9em;
+            letter-spacing: 1px;
+        }
+    </style>
 </head>
 <body>
 
-<header>
-    <div class="logo">REV<span>LINE</span></div>
-    <div style="display: flex; gap: 15px;">
-        <input type="text" id="searchBox" placeholder="Search..." style="padding: 5px; margin: 0;">
-        <button class="btn btn-red" onclick="search()">Search</button>
+<header style="background-color: #D80000; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center;">
+
+    <div class="logo" style="color: white; font-weight: bold; font-size: 28px; letter-spacing: 2px;">
+        REV<span style="color: black;">LINE</span>
     </div>
-    <div>
-        <a href="Cart.html" class="btn btn-red">Cart</a>
+
+    <div style="display: flex; align-items: center; gap: 20px;">
         <a href="admin.html" id="adminBtn" class="btn" style="background: #333; color: white; display: none;">Admin</a>
-        <button onclick="logout()" class="btn" style="background: transparent; color: white; border: 1px solid white;">Logout</button>
+        <button onclick="logout()" class="btn" style="background: transparent; color: white; border: 2px solid white;">Logout</button>
+        <a href="Cart.html" style="display: flex; align-items: center;">
+            <img src="https://img.icons8.com/ios-filled/50/ffffff/shopping-cart.png" width="30" height="30" alt="Cart">
+        </a>
     </div>
 </header>
 
-<div style="background-color: #111; padding: 40px; text-align: center; color: white;">
-    <h2>Current Inventory</h2>
-</div>
+<div class="main-inventory-box">
 
-<div id="carGrid" class="inventory-grid">
+    <div class="search-area">
+        <input type="text" id="searchBox" class="search-input"
+               placeholder="Search inventory..."
+               onkeyup="search()"> </div>
+
+    <div id="carGrid" class="inventory-grid">
+    </div>
 </div>
 
 <script>
-    // On Load: Check login and fetch cars
     window.onload = async () => {
         const userReq = await fetch('/api/auth/me');
-        if (!userReq.ok) window.location.href = 'login.html'; // Force Login
+        if (!userReq.ok) window.location.href = 'login.html';
 
         const user = await userReq.json();
         if (user.administrator) document.getElementById('adminBtn').style.display = 'inline-block';
@@ -45,7 +114,7 @@
         const cars = await response.json();
 
         const grid = document.getElementById('carGrid');
-        grid.innerHTML = ''; // Clear current
+        grid.innerHTML = '';
 
         cars.forEach(car => {
             const card = document.createElement('div');
@@ -54,9 +123,9 @@
                 <img src="${car.imagePath}" alt="${car.model}">
                 <div class="car-info">
                     <h3>${car.year} ${car.make} ${car.model}</h3>
-                    <p class="price">$${car.price.toLocaleString()}</p>
-                    <p style="color: #666; font-size: 0.9em;">${car.description}</p>
-                    <button class="btn btn-red" style="width: 100%" onclick="addToCart(${car.carID})">Add to Cart</button>
+                    <p class="price">$${car.price.toLocaleString(undefined, {minimumFractionDigits: 2})}</p>
+                    <p>${car.description}</p>
+                    <button class="btn btn-red" style="width: 100%; margin-top: 10px;" onclick="addToCart(${car.carID})">Add to Cart</button>
                 </div>
             `;
             grid.appendChild(card);
@@ -65,11 +134,8 @@
 
     async function addToCart(id) {
         const res = await fetch(`/api/cart/add/${id}`, { method: 'POST' });
-        if (res.ok) {
-            alert('Added to cart!');
-        } else {
-            alert('Error adding to cart');
-        }
+        if (res.ok) alert('Added to cart!');
+        else alert('Error adding to cart');
     }
 
     function search() {
