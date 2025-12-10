@@ -53,3 +53,7 @@ This section provides a detailed overview of the technical design for our web-ba
 
 To access the documents of our team implementing the User Interface and Technical Design for this project click [here.](./implementation/README.md)
 
+## Final Presentation
+
+[Watch our Final Presentation on Loom.]()
+

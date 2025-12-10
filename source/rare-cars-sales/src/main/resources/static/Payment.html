@@ -40,13 +40,11 @@
 
       <div class="form-section">
         <h4>Payment Method</h4>
-        <input type="text" placeholder="Credit Card Number">
+        <input type="text" id="cardNumber" placeholder="Credit Card Number" required>
         <div style="display: flex; gap: 10px;">
           <input type="text" placeholder="MM/YY" style="flex: 1;">
           <input type="text" placeholder="CVV" style="flex: 1;">
         </div>
-        <p style="font-size: 12px; color: #666;">* We only save the last 4 digits.</p>
-        <input type="text" id="cardLast4" placeholder="Last 4 Digits (Required)" required>
       </div>
     </div>
 
@@ -92,13 +90,16 @@
   function placeOrder(e) {
     e.preventDefault();
 
+    const fullCardNum = document.getElementById('cardNumber').value;
+    const lastFour = fullCardNum.length >= 4 ? fullCardNum.slice(-4) : '0000';
+
     let orderInfo = {
       street: document.getElementById('street').value,
       city: document.getElementById('city').value,
       state: document.getElementById('state').value,
       zip: document.getElementById('zip').value,
       phone: document.getElementById('phone').value,
-      cardLastFour: document.getElementById('cardLast4').value,
+      cardLastFour: lastFour,
       shippingSpeed: document.getElementById('shippingSpeed').value
     };
 

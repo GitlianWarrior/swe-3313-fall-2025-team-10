@@ -4,33 +4,92 @@
     <meta charset="UTF-8">
     <title>Admin Dashboard - Revline</title>
     <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .main-inventory-box {
+            background-color: #1a1a1a;
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 40px;
+            border-radius: 12px;
+            min-height: 600px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            position: relative;
+        }
+
+        h2.page-title {
+            color: white;
+            font-weight: normal;
+            margin-bottom: 30px;
+            font-size: 32px;
+            border-bottom: 1px solid #444;
+            padding-bottom: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 4px;
+            overflow: hidden;
+            color: black;
+        }
+
+        th {
+            background-color: #eee;
+            color: #333;
+            font-weight: bold;
+            padding: 15px;
+            text-align: left;
+            border-bottom: 2px solid #ddd;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .bottom-actions {
+            margin-top: 30px;
+            display: flex;
+            justify-content: flex-end;
+        }
+    </style>
 </head>
 <body>
 
-<header style="background: #222;">
-    <div class="logo">REV<span>ADMIN</span></div>
-    <a href="index.html" class="btn" style="color: white; border: 1px solid white;">Back to Shop</a>
-</header>
+<header style="background-color: #D80000; padding: 15px 30px; display: flex; justify-content: space-between; align-items: center;">
 
-<div class="form-container" style="max-width: 1000px; margin-top: 40px;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <h2>Sales Report</h2>
-        <button class="btn btn-red" onclick="exportToCSV()">Export to CSV</button>
+    <div class="logo" style="color: white; font-weight: bold; font-size: 28px; letter-spacing: 2px;">
+        REV<span style="color: black;">LINE</span>
     </div>
 
-    <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+    <div style="display: flex; align-items: center; gap: 20px;">
+        <a href="index.html" class="btn" style="background: transparent; color: white; border: 2px solid white;">Shop</a>
+        <button onclick="logout()" class="btn" style="background: transparent; color: white; border: 2px solid white;">Logout</button>
+    </div>
+</header>
+
+<div class="main-inventory-box">
+
+    <h2 class="page-title">Sales Report</h2>
+
+    <table>
         <thead>
-        <tr style="background: #f4f4f4; text-align: left;">
-            <th style="padding: 10px;">ID</th>
-            <th style="padding: 10px;">Date</th>
-            <th style="padding: 10px;">Customer</th>
-            <th style="padding: 10px;">Items</th>
-            <th style="padding: 10px;">Total</th>
+        <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th>Customer</th>
+            <th>Items</th>
+            <th>Total</th>
         </tr>
         </thead>
         <tbody id="salesTable">
         </tbody>
     </table>
+
+    <div class="bottom-actions">
+        <button class="btn btn-red" onclick="exportToCSV()" style="font-size: 16px; padding: 12px 30px;">Export to CSV</button>
+    </div>
 </div>
 
 <script>
@@ -57,19 +116,18 @@
             // Format Date
             const date = new Date(order.orderDate).toLocaleDateString();
 
-            // Format Items (e.g. "Ferrari, Bugatti")
+            // Format Items
             const itemNames = order.orderItems.map(item =>
                 `${item.car.year} ${item.car.make} ${item.car.model}`
             ).join(', ');
 
             const row = document.createElement('tr');
-            row.style.borderBottom = "1px solid #eee";
             row.innerHTML = `
-                <td style="padding: 10px;">#${order.orderID}</td>
-                <td style="padding: 10px;">${date}</td>
-                <td style="padding: 10px;">${order.user.firstName} ${order.user.lastName}</td>
-                <td style="padding: 10px; color: #555;">${itemNames}</td>
-                <td style="padding: 10px; font-weight: bold;">$${order.total.toLocaleString(undefined, {minimumFractionDigits: 2})}</td>
+                <td>#${order.orderID}</td>
+                <td>${date}</td>
+                <td>${order.user.firstName} ${order.user.lastName}</td>
+                <td style="color: #555;">${itemNames}</td>
+                <td style="font-weight: bold;">$${order.total.toLocaleString(undefined, {minimumFractionDigits: 2})}</td>
             `;
             tbody.appendChild(row);
         });
@@ -85,6 +143,7 @@
 
         salesData.forEach(order => {
             const itemNames = order.orderItems.map(i => `${i.car.make} ${i.car.model}`).join(' | ');
+            // Escape commas in address to avoid CSV breaking
             const address = `"${order.shippingAddressStreet}, ${order.shippingAddressCity}"`;
 
             csv += `${order.orderID},${order.orderDate},${order.user.username},"${itemNames}",${order.total},${address}\n`;
@@ -96,6 +155,11 @@
         a.href = url;
         a.download = 'sales_report.csv';
         a.click();
+    }
+
+    async function logout() {
+        await fetch('/api/auth/logout', { method: 'POST' });
+        window.location.href = 'login.html';
     }
 </script>
 </body>
