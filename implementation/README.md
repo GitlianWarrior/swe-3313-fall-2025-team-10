@@ -28,30 +28,35 @@ The seed will be automatically uploaded in the database once the app runs, as lo
 
 ## How to Start and Login
 ####  **1. Clone the Repository (if needed)**
+Utilize this command in the terminal to download the project.
 
   ```bash
 git clone https://github.com/GitlianWarrior/swe-3313-fall-2025-team-10.git
   ```
 
 ####  **2. Navigate to Project Directory**
+Proceed into the folder where the source code is available.
 
    ```bash
 cd swe-3313-fall-2025-team-10/source/rare-cars-sales
    ```
 
 #### **3. Build Application**
+Use command below to compile and install dependencies.
 
   ```bash
    mvn clean install
   ```
 
 #### **4. Run Command**
+Start the Spring Boot application from the terminal.
 
    ```bash
     mvn spring-boot:run
    ```
 
 #### **5. To View Site**
+Open link in browser to access the project.
 
   ```
     http://localhost:8080/
