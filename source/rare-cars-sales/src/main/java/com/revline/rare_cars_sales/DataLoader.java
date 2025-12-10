@@ -18,6 +18,15 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+
+        if (userRepository.findByUsername("user").isEmpty()) {
+            User testUser = new User("user", "user123", "Test", "Customer", "user@test.com");
+            testUser.setAdministrator(false); // Default is false, but explicitly setting for clarity
+            userRepository.save(testUser);
+            System.out.println("TEST USER ACCOUNT CREATED");
+        }
+
+
         if (userRepository.findByUsername("admin").isEmpty()) {
             User admin = new User("admin", "admin123", "admin", "admin", "revlineadmin@gmail.com");
             admin.setAdministrator(true);
