@@ -62,6 +62,15 @@ Open link in browser to access the project.
     http://localhost:8080/
    ```
 
-## Login Information
+#### **6. Login Information** 
+Use the sample information to log into the application.
 
-## Troubleshooting
+| **Username** | **Password** |
+|--------------|--------------|
+| admin        | admin123     |
+| user         | user123      |
+
+**Notes:**
+- **admin** — Role has full administrator access in addition to user access.
+- **user** — Role only has standard user access.
+
