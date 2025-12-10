@@ -17,12 +17,17 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody User newUser) {
+        System.out.println("Registering user: " + newUser.getUsername());
+        System.out.println("Password received length: " + (newUser.getPassword() != null ? newUser.getPassword().length() : "null"));
+
         if (userRepository.findByUsername(newUser.getUsername()).isPresent()) {
             return ResponseEntity.badRequest().body("Username already taken");
         }
+
         if (newUser.getPassword() == null || newUser.getPassword().length() < 6) {
             return ResponseEntity.badRequest().body("Password must be at least 6 characters");
         }
+
         User savedUser = userRepository.save(newUser);
         return ResponseEntity.ok(savedUser);
     }
