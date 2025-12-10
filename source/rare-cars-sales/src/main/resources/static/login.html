@@ -5,11 +5,15 @@
     <title>Login - Revline</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
-<body style="background-color: #000; color: white;">
+<body>
+
+<div class="logo" style="position: absolute; top: 20px; left: 20px;">
+    <span>REV</span>LINE
+</div>
 
 <div class="form-container" style="background-color: #111; color: white; border: 1px solid #333;">
-    <h2 style="text-align: center; color: #D80000;">REVLINE</h2>
-    <p style="text-align: center;">Welcome back</p>
+    <h2  id="formTitle" style="text-align: center; color: white;">Welcome back</h2>
+    <p style="text-align: center;">Fill your information in below to get started.</p>
 
     <div id="loginSection">
         <input type="text" id="loginUser" placeholder="Username">
@@ -37,10 +41,14 @@
     function toggleForms() {
         const login = document.getElementById('loginSection');
         const reg = document.getElementById('registerSection');
+        const title = document.getElementById('formTitle');
+
         if (login.style.display === 'none') {
             login.style.display = 'block'; reg.style.display = 'none';
+            title.innerText = 'Welcome back!';
         } else {
             login.style.display = 'none'; reg.style.display = 'block';
+            title.innerText = 'Create an account!';
         }
     }
 

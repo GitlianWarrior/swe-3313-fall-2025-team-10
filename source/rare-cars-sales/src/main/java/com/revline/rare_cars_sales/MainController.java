@@ -4,6 +4,7 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
+import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -130,6 +131,7 @@ public class MainController {
     }
 
     @GetMapping("/admin/sales")
+    @Transactional
     public ResponseEntity<?> getSalesReport(HttpSession session) {
         User user = (User) session.getAttribute("user");
         if (user == null || !user.isAdministrator()) {

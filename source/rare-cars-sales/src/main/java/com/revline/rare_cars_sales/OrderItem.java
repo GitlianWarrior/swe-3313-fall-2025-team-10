@@ -1,6 +1,8 @@
 package com.revline.rare_cars_sales;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name = "order_items")
@@ -12,6 +14,7 @@ public class OrderItem {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "orderID", nullable = false)
+    @JsonIgnore
     private Order order;
 
     @OneToOne(optional = false)
