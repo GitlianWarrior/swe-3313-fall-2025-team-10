@@ -4,7 +4,7 @@ This document provides detailed configuration instructions to ensure the applica
 ## Environment Setup
 The following is required to operate the application from a terminal: 
 ####  **1. Java 24 or Higher**
-- **Installing Java 24**: If not already installed, download Java 24 (JDK) from Oracle. Choose the installer based on your specific operating system. (https://www.oracle.com/java/technologies/downloads/)
+- **Installing Java 24**: If not already installed, download Java 24 (JDK) from Oracle. Choose the installer based off your specific operating system. (https://www.oracle.com/java/technologies/downloads/)
   
 - **Confirm Java Version**: Once installed (or if you already had Java installed), verify the Java version in the terminal.
   ```bash
@@ -62,6 +62,15 @@ Open link in browser to access the project.
     http://localhost:8080/
    ```
 
-## Login Information
+#### **6. Login Information** 
+Use the sample information to log into the application.
 
-## Troubleshooting
+| **Username** | **Password** |
+|--------------|--------------|
+| admin        | admin123     |
+| user         | user123      |
+
+**Notes:**
+- **admin** — Role has full administrator access in addition to user access.
+- **user** — Role only has standard user access.
+
