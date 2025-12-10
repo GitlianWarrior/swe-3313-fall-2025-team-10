@@ -55,5 +55,5 @@ To access the documents of our team implementing the User Interface and Technica
 
 ## Final Presentation
 
-[Watch our Final Presentation on Loom.]()
+[Watch our Final Presentation on Loom.](https://www.loom.com/share/623850eb1a874c78a478d74db04054a3)
 
