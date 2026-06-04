@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -123,7 +124,17 @@ public class MainController {
 
     @GetMapping("/order/{orderId}")
     public ResponseEntity<?> getOrder(@PathVariable Long orderId, HttpSession session) {
-        Order order = orderOptional.get();
+        User user = (User) session.getAttribute("user");
+
+        if (user == null) {
+            return ResponseEntity.status(401).body("Please login first");
+        }
+
+        Order order = orderRepository.findById(orderId).orElse(null);
+
+        if (order == null) {
+            return ResponseEntity.notFound().build();
+        }
 
         if (!order.getUser().getUserID().equals(user.getUserID()) && !user.isAdministrator()) {
             return ResponseEntity.status(403).body("You are not allowed to view this order");
