@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.transaction.annotation.Transactional;
 
 @RestController
 @RequestMapping("/api")
@@ -72,6 +73,7 @@ public class MainController {
         return ResponseEntity.ok(cart);
     }
 
+    @Transactional
     @PostMapping("/checkout")
     public ResponseEntity<?> checkout(@RequestBody CheckoutRequest request, HttpSession session) {
         User user = (User) session.getAttribute("user");
@@ -123,11 +125,20 @@ public class MainController {
     @GetMapping("/order/{orderId}")
     public ResponseEntity<?> getOrder(@PathVariable Long orderId, HttpSession session) {
         User user = (User) session.getAttribute("user");
-        if (user == null) return ResponseEntity.status(401).body("Please login first");
 
-        return orderRepository.findById(orderId)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        if (user == null) {
+            return ResponseEntity.status(401).body("You must be logged in");
+        }
+
+        Optional<Order> orderOptional = orderRepository.findById(orderId);
+
+        if (orderOptional.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        Order order = orderOptional.get();
+
+        return ResponseEntity.ok(order);
     }
 
     @GetMapping("/admin/sales")

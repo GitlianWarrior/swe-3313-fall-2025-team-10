@@ -28,6 +28,7 @@ public class AuthenticationController {
             return ResponseEntity.badRequest().body("Password must be at least 6 characters");
         }
 
+        newUser.setAdministrator(false);
         User savedUser = userRepository.save(newUser);
         return ResponseEntity.ok(savedUser);
     }
