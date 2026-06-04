@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import org.springframework.transaction.annotation.Transactional;
 
 @RestController
 @RequestMapping("/api")
@@ -124,19 +123,11 @@ public class MainController {
 
     @GetMapping("/order/{orderId}")
     public ResponseEntity<?> getOrder(@PathVariable Long orderId, HttpSession session) {
-        User user = (User) session.getAttribute("user");
-
-        if (user == null) {
-            return ResponseEntity.status(401).body("You must be logged in");
-        }
-
-        Optional<Order> orderOptional = orderRepository.findById(orderId);
-
-        if (orderOptional.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-
         Order order = orderOptional.get();
+
+        if (!order.getUser().getUserID().equals(user.getUserID()) && !user.isAdministrator()) {
+            return ResponseEntity.status(403).body("You are not allowed to view this order");
+        }
 
         return ResponseEntity.ok(order);
     }
