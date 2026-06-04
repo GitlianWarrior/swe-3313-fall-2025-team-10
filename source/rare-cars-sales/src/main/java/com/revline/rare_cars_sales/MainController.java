@@ -133,7 +133,6 @@ public class MainController {
     }
 
     @GetMapping("/admin/sales")
-    @Transactional
     public ResponseEntity<?> getSalesReport(HttpSession session) {
         User user = (User) session.getAttribute("user");
         if (user == null || !user.isAdministrator()) {
