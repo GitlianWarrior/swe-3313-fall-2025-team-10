@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: rare-cars-sales
+    runtime: docker
+    plan: free
+    rootDir: source/rare-cars-sales
+    healthCheckPath: /
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: DATABASE_USERNAME
+        sync: false
+      - key: DATABASE_PASSWORD
+        sync: false
+      - key: DATABASE_MAX_POOL_SIZE
+        value: 5
